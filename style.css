@@ -38,3 +38,9 @@ main{max-width:1050px;margin:0 auto;padding:32px 20px}.grid{display:grid;grid-te
 #chat.min #vc,#chat.min #pg{display:none}@media(prefers-reduced-motion:reduce){#pg i{transition:none}}
 
 footer .priv{opacity:.7;font-size:12px}
+
+.b{position:relative;margin-inline-start:30px}
+.b::before{content:"";position:absolute;inset-inline-start:-30px;top:2px;width:24px;height:24px;border-radius:50%;background:#F59E0B url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230B1F3A' stroke-width='2.2'%3E%3Crect x='4' y='8' width='16' height='12' rx='3'/%3E%3Cpath d='M12 4v4M9 14h.01M15 14h.01'/%3E%3C/svg%3E") center/15px no-repeat}
+.chips{margin-inline-start:30px}
+#fab{position:fixed;inset-inline-end:18px;bottom:18px;width:58px;height:58px;border-radius:50%;border:0;background:#F59E0B;color:#0B1F3A;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.35);cursor:pointer;z-index:50}
+#fab:hover{transform:scale(1.06)}#fab[hidden]{display:none}
