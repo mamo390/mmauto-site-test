@@ -49,3 +49,11 @@ footer .priv{opacity:.7;font-size:12px}
 @keyframes fabp{0%{box-shadow:0 6px 22px rgba(37,99,235,.55),0 0 0 0 rgba(37,99,235,.45)}70%,100%{box-shadow:0 6px 22px rgba(37,99,235,.55),0 0 0 16px rgba(37,99,235,0)}}
 @media(prefers-reduced-motion:reduce){#fab{animation:none}}
 .b::before{background:#2563EB url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z'/%3E%3C/svg%3E") center/14px no-repeat}
+
+.own{display:flex;gap:18px;align-items:center;max-width:900px;margin:36px auto 0;padding:22px;border-radius:16px;background:#0B1F3A;color:#E8EEF7}
+.own h2{margin:0 0 6px;font-size:22px}.own p{margin:0 0 12px;line-height:1.6}.own small{display:block;margin-top:10px;opacity:.75}
+.av2{flex:none;width:84px;height:84px;border-radius:50%;background:#F59E0B;color:#0B1F3A;display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:700}
+.faq{max-width:900px;margin:36px auto 0}.faq h2{margin:0 0 12px;font-size:22px}
+.faq details{border:1px solid rgba(120,130,150,.35);border-radius:12px;padding:12px 16px;margin-bottom:10px}
+.faq summary{cursor:pointer;font-weight:600}.faq details p{margin:10px 0 0;line-height:1.6}
+@media(max-width:560px){.own{flex-direction:column;text-align:start;align-items:flex-start}}

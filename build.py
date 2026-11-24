@@ -72,6 +72,23 @@ for L in ("en","ar"):
     TT[L]["q_vehicle2"]="For example: 2017 Cadillac ATS" if L=="en" else "مثال: 2017 Cadillac ATS"
     TT[L]["done_more"]="We added this to your earlier request from today. We will contact you to confirm." if L=="en" else "أضفنا هذا إلى طلبك السابق اليوم. سنتواصل معك للتأكيد."
     C[L]["addr"]=K["business"]["address"].replace(", ON L4W 1N8","")
+
+OWN={"en":{"h":"Talk to Mohamed","p":"I am the owner of M&M Auto Center. Tell us what your car needs and I will make sure you get a clear answer. English or Arabic, whichever is easier for you.","b":"Chat with us","n":"Mohamed, owner"},
+"ar":{"h":"تحدّث مع محمد","p":"أنا صاحب M&M Auto Center. أخبرنا بما تحتاجه سيارتك وسأحرص أن تحصل على جواب واضح. بالعربية أو الإنجليزية، كما يريحك.","b":"ابدأ المحادثة","n":"محمد، صاحب الورشة"}}
+FAQ={"en":{"h":"Common questions","q":[
+["How do I get a price?","Prices depend on your vehicle and the part. Send us your request in the chat or call us, and we confirm price and availability with you. We do not post prices online."],
+["What do you need to give me a quote?","Your vehicle year, make and model, or the 17-character VIN, and a short description of what you need."],
+["Can I book online?","Yes. Use the Book online button, or start the chat and choose Book online."],
+["Do you offer pre-purchase inspections?","Yes. Tell us the car you are thinking of buying and we inspect it before you buy."],
+["Which languages do you speak?","English and Arabic. The whole website and the chat are available in both."],
+["When are you open?","Monday to Friday 9:30 AM to 6:00 PM, Saturday 9:30 AM to 4:00 PM, closed Sunday. The chat takes your request at any hour and we reply when we open."]]},
+"ar":{"h":"أسئلة شائعة","q":[
+["كيف أعرف السعر؟","السعر يعتمد على سيارتك والقطعة. أرسل طلبك في الشات أو اتصل بنا ونؤكد لك السعر والتوفر. لا ننشر الأسعار على الموقع."],
+["ماذا تحتاجون لتعطوني عرض سعر؟","سنة وماركة وموديل السيارة أو رقم الشاسيه (17 خانة)، ووصف قصير لما تحتاجه."],
+["هل أستطيع الحجز عبر الإنترنت؟","نعم. استخدم زر احجز عبر الإنترنت، أو ابدأ المحادثة واختر الحجز."],
+["هل تقدمون فحصًا قبل شراء السيارة؟","نعم. أخبرنا بالسيارة التي تفكر بشرائها ونفحصها لك قبل الشراء."],
+["ما اللغات التي تتحدثونها؟","العربية والإنجليزية. الموقع كله والشات متاحان باللغتين."],
+["متى ساعات العمل؟","الاثنين إلى الجمعة 9:30 ص إلى 6:00 م، السبت 9:30 ص إلى 4:00 م، الأحد مغلق. الشات يستقبل طلبك في أي ساعة ونرد عند فتح الورشة."]]}}
 CSS = open("style.css").read()
 JS = open("app.js").read()
 for k,c in C.items():
@@ -79,16 +96,20 @@ for k,c in C.items():
     for key,t,d,b in c["choices"]:
         img = f'<img src="../img/{IMG[key]}" alt="" loading="lazy">' if IMG[key] else '<div class="ph" style="background:linear-gradient(135deg,{CLR[key]},#0B1F3A)"><i></i></div>'
         cards += f'<article class="card" style="--c:{CLR[key]}"><div class="im">{img}</div><div class="bd"><h3>{t}</h3><p>{d}</p><button class="go" data-k="{key}">{b}</button></div></article>'
+    k=[x for x in C if C[x] is c][0]
+    faqhtml=''.join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q,a in FAQ[k]['q'])
     nav = "".join(f'<a href="#{a}">{n}</a>' for a,n in zip(["services","parts","tires","book"],c["nav"]))
     html = f'''<!doctype html><html lang="{c["lang"]}" dir="{c["dir"]}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{c["title"]}</title><meta name="description" content="{c["desc"]}">
 <link rel="alternate" hreflang="en" href="https://mmautocenter.ca/en/"><link rel="alternate" hreflang="ar" href="https://mmautocenter.ca/ar/"><link rel="alternate" hreflang="x-default" href="https://mmautocenter.ca/en/">
-<style>{CSS}</style></head><body>
+<style>{CSS}</style><script type="application/ld+json">{json.dumps({"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in FAQ[k]["q"]]},ensure_ascii=False)}</script></head><body>
 <header><div class="logo">M&amp;M <span>Auto Center</span></div><nav>{nav}</nav><a class="lang" href="../{c["other"]}/" data-lang="{c["other"]}">{c["other_label"]}</a></header>
 <section class="hero"><div class="hero-in"><p class="tag">{c["tagline"]}</p><h1>{c["h1"]}</h1><p class="sub">{c["sub"]}</p>
 <div class="cta"><button class="go big" data-k="book">{c["cta"]}</button><a class="call" href="tel:+16474480876">{c["call"]}</a></div></div>
 <img class="hero-img" src="../img/hero.png" alt=""></section>
-<main><div class="grid">{cards}</div><p class="note">{c["note"]}</p></main>
+<main><div class="grid">{cards}</div><p class="note">{c["note"]}</p>
+<section class="own"><div class="av2" aria-hidden="true">M</div><div><h2>{OWN[k]["h"]}</h2><p>{OWN[k]["p"]}</p><button class="go" data-k="book">{OWN[k]["b"]}</button><small>{OWN[k]["n"]}</small></div></section>
+<section class="faq"><h2>{FAQ[k]["h"]}</h2>{faqhtml}</section></main>
 <footer><div>{c["addr"]}</div><div>(647) 448-0876</div><div>{c["foot"]}</div><div class="priv">{c["priv"]}</div></footer>
 <button id="fab" type="button" aria-label="{c["chat_title"]}"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01" stroke-width="2.6"/></svg></button><aside id="chat" hidden><div class="ch"><span class="av"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 14h.01M15 14h.01"/></svg></span><div class="tt"><b>{c["chat_title"]}</b><small><i></i>{c["online"]}</small></div><button id="mn" aria-label="minimize">&#8722;</button><button id="x" aria-label="{c["close"]}">&times;</button></div><div id="vc" hidden></div><div id="pg" hidden><i></i></div><div id="log"></div>
 <form id="f"><input id="m" placeholder="{c["ph"]}" autocomplete="off"><button aria-label="{c["send"]}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4zM22 2 11 13"/></svg></button></form></aside>
