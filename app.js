@@ -1,7 +1,7 @@
 (function(){
 var SB="https://wzfdeihefnobnnoafajd.supabase.co",KEY="sb_publishable_FkP47Keqd7iduzuGVwms5g_QHXTZkI_";
 var ARI=BOOK;
-var MAP="https://www.google.com/maps/place/M%26M+Auto+Center/@43.6095,-79.6325,17z/";
+var ADDR=encodeURIComponent("1765 Shawson Dr Unit 14, Mississauga, ON L4W 1N8");var MAP="https://www.google.com/maps/search/?api=1&query="+ADDR;var DIR="https://www.google.com/maps/dir/?api=1&destination="+ADDR;
 var SRC=(function(){try{var s=new URLSearchParams(location.search).get("src")||"chat";return /^[a-z0-9_-]{1,20}$/i.test(s)?s:"chat"}catch(e){return "chat"}})();
 var LIVE=/(^|\.)mmautocenter\.ca$/.test(location.hostname),STAGE=/\.github\.io$/.test(location.hostname),PROD=LIVE||STAGE;
 var chat=document.getElementById('chat'),log=document.getElementById('log'),inp=document.getElementById('m'),form=document.getElementById('f');
@@ -41,7 +41,7 @@ function afterVeh(){var d=S.d;if(d.service==="diagnosis")return ask("mileage",T.
 function start(k){
  S={step:"idle",flow:k,d:{}};track('flow_start',k);
  if(k==="hours"){bot(T.hours);bot(openNow()?T.open_now:T.closed_now);return home()}
- if(k==="loc"){bot(T.loc);link(T.map,MAP);return home()}
+ if(k==="loc"){bot(T.loc);link(T.map,MAP);link(T.dir,DIR);return home()}
  if(k==="book"){bot(T.book_msg);link(T.book_btn,ARI);chips([["cb",T.callback,function(){track('callback_click','book');S.flow="callback";S.d.service="appointment";ask("vehicle",T.q_vehicle)}],["call",T.call,function(){track('call_click',S.flow);location.href="tel:+16474480876"}]]);return}
  if(k==="battery"){S.d.service="battery";ask("vehicle",T.q_battery);return}
  if(k==="prepurchase"){S.d.service="pre_purchase_inspection";ask("vehicle",T.q_buy);return}

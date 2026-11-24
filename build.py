@@ -43,7 +43,7 @@ TT={"en":{
 "bad_phone":"Please enter a valid phone number (at least 10 digits).","vin_ok":"Found:","vin_fail":"I could not decode that VIN, I will save it as typed.",
 "done":"Thank you! We have your request and will contact you to confirm price and availability.","test":"(Test mode: nothing was saved.)","fail":"I could not save that right now. Please call us at (647) 448-0876.",
 "book_msg":"You can book online now. If you prefer, we can call you back.","book_btn":"Book online","callback":"Call me back","call":"Call us",
-"hours":"Hours: Mon-Fri 9:30 AM-6:00 PM, Sat 9:30 AM-4:00 PM, Sunday closed.","loc":"We are at 1765 Shawson Dr, Unit 14, Mississauga, ON L4W 1N8.","map":"Open map",
+"hours":"Hours: Mon-Fri 9:30 AM-6:00 PM, Sat 9:30 AM-4:00 PM, Sunday closed.","loc":"We are at 1765 Shawson Dr, Unit 14, Mississauga, ON L4W 1N8.","map":"Open map","dir":"Get directions",
 "price":"Prices depend on your vehicle. Leave your details and we confirm price and availability with you.","fallback":"I can help with repairs, parts, tires and rims, or booking. Please choose an option below, or call us.",
 "chips_home":[["services","Repair & service"],["parts","Find a part"],["tires","Tires & rims"],["book","Book online"],["hours","Hours"],["loc","Location"]],
 "again":"Anything else?","intent_words":{"hours":"hour|open|close|when","loc":"where|address|location|direction","price":"price|cost|quote|how much|estimate","book":"book|appoint|schedule","insp":"inspect|pre-purchase|before buy|used car|buying a car","battery":"battery|won.t start|dead battery","parts":"part|tire|brake pad|filter|oil","urgent":"urgent|asap|emergency|today|right now|broken down|stranded"}},"ar":{
@@ -53,7 +53,7 @@ TT={"en":{
 "bad_phone":"من فضلك أدخل رقم هاتف صحيحًا (10 أرقام على الأقل).","vin_ok":"تم التعرف على:","vin_fail":"لم أستطع قراءة رقم الشاسيه، سأحفظه كما كتبته.",
 "done":"شكرًا لك! وصلنا طلبك وسنتواصل معك لنؤكد السعر والتوفر.","test":"(وضع تجريبي: لم يُحفظ شيء.)","fail":"تعذّر الحفظ الآن. من فضلك اتصل بنا على (647) 448-0876.",
 "book_msg":"يمكنك الحجز عبر الإنترنت الآن. وإن فضّلت، نتصل بك نحن.","book_btn":"احجز عبر الإنترنت","callback":"اتصلوا بي","call":"اتصل بنا",
-"hours":"مواعيد العمل: الاثنين إلى الجمعة 9:30 ص - 6:00 م، السبت 9:30 ص - 4:00 م، الأحد مغلق.","loc":"نحن في 1765 Shawson Dr, Unit 14, Mississauga, ON L4W 1N8.","map":"افتح الخريطة",
+"hours":"مواعيد العمل: الاثنين إلى الجمعة 9:30 ص - 6:00 م، السبت 9:30 ص - 4:00 م، الأحد مغلق.","loc":"نحن في 1765 Shawson Dr, Unit 14, Mississauga, ON L4W 1N8.","map":"افتح الخريطة","dir":"الاتجاهات إلى الورشة",
 "price":"السعر يعتمد على سيارتك. اترك بياناتك ونؤكد لك السعر والتوفر.","fallback":"أستطيع مساعدتك في الإصلاح أو قطع الغيار أو الإطارات والجنوط أو الحجز. اختر من الأزرار أدناه أو اتصل بنا.",
 "chips_home":[["services","إصلاح وصيانة"],["parts","ابحث عن قطعة"],["tires","إطارات وجنوط"],["book","احجز عبر الإنترنت"],["hours","المواعيد"],["loc","الموقع"]],
 "again":"هل تحتاج شيئًا آخر؟","intent_words":{"hours":"مواعيد|دوام|ساعات|متى|مفتوح","loc":"فين|وين|اين|أين|عنوان|موقع","price":"سعر|كم|تكلفة|عرض سعر|بكام","book":"حجز|احجز|موعد","insp":"فحص|قبل الشراء|مستعملة|مستعمل","battery":"بطارية|بطاريه|بطاريات","parts":"قطعة|قطع|اطار|إطار|فلتر|زيت|تيل","urgent":"عاجل|مستعجل|طارئ|الان|الآن|اليوم|معطلة|عطلانة"}}}
