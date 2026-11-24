@@ -29,10 +29,11 @@ function track(ev,flow,step,detail){
 }
 
 var vc=document.getElementById('vc'),pg=document.getElementById('pg');
-var PCT={vehicle2:50,want:25,part:25,size:25,symptom:25,vehicle:50,name:75,phone:90};
+var PCT={mileage:60,dtc:70,vehicle2:50,want:25,part:25,size:25,symptom:25,vehicle:50,name:75,phone:90};
 function prog(step){var p=PCT[step];if(!p){pg.hidden=true;return}pg.hidden=false;pg.firstChild.style.width=p+'%';pg.setAttribute('aria-label',T.stepLbl.replace('{p}',p))}
 function pin(){var d=S.d,v=d.veh,txt=v?[v.year,v.make,v.model].filter(Boolean).join(' '):'';if(!txt){vc.hidden=true;return}vc.hidden=false;vc.innerHTML='';var i=el('span','vi','\u2713');vc.appendChild(i);vc.appendChild(el('span','vt',txt))}
 function ask(step,q){S.step=step;track('step',S.flow||S.d.service,step);prog(step);pin();bot(q);inp.focus()}
+function afterVeh(){var d=S.d;if(d.service==="diagnosis")return ask("mileage",T.q_mileage);if(d.service==="pre_purchase_inspection")return ask("mileage",T.q_mileage_buy);ask("name",T.q_name)}
 function start(k){
  S={step:"idle",flow:k,d:{}};track('flow_start',k);
  if(k==="hours"){bot(T.hours);bot(openNow()?T.open_now:T.closed_now);return home()}
@@ -52,7 +53,7 @@ function urgency(t){return new RegExp(T.intent_words.urgent,"i").test(t)?"high":
 function save(){
  var d=S.d,m=mem(),v=d.veh||{};
  var row={name:d.name,phone:d.phone,service_type:d.service||"other",vehicle_year:v.year||null,vehicle_make:v.make||null,vehicle_model:v.model||null,vin:d.vin||null,
-  message:(d.want?("Looking for: "+d.want+" | "):"")+(d.symptom?("Symptoms: "+d.symptom+" | "):"")+(d.part?("Part: "+d.part+" | "):"")+(d.vehText?("Vehicle: "+d.vehText):""),intent:/^(parts|tires|rims)$/.test(d.service)?"parts_inquiry":"appointment",
+  message:(d.want?("Looking for: "+d.want+" | "):"")+(d.symptom?("Symptoms: "+d.symptom+" | "):"")+(d.part?("Part: "+d.part+" | "):"")+(d.mileage?("Mileage: "+d.mileage+" | "):"")+(d.dtc?("Codes: "+d.dtc+" | "):"")+(d.vehText?("Vehicle: "+d.vehText):""),intent:/^(parts|tires|rims)$/.test(d.service)?"parts_inquiry":"appointment",
   urgency_level:urgency((d.part||"")+" "+(d.symptom||"")+" "+(d.vehText||"")),segment:(m.visits||1)>=5?"loyal":(m.visits||1)>=2?"returning":"new",session_id:sid,status:"new",
   source:/^(parts|tires|rims)$/.test(d.service)?"chatbot_parts":"chatbot_booking",notes:"lang="+LANG+(LIVE?"":" test")};
  if(!PROD){bot(T.done);if(!openNow())bot(T.closed_note);bot(T.test);after();return}
@@ -68,9 +69,11 @@ function handle(t){
  if(S.step==="want"){d.want=t.slice(0,300);return ask("name",T.q_name)}
  if(S.step==="symptom"){d.symptom=t.slice(0,500);return ask("vehicle",T.q_vehicle)}
  if(S.step==="vehicle"){d.vehText=t;var vin=t.replace(/\s/g,"").toUpperCase();
-  if(/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)){d.vin=vin;return vinDecode(vin).then(function(r){if(r&&r.year&&r.make&&r.model){track('vin_ok',S.flow);d.veh=r;bot(T.vin_ok+" "+[r.year,r.make,r.model].join(" "));ask("name",T.q_name)}else{track('vin_fail',S.flow);bot(T.vin_fail);ask("vehicle2",T.q_vehicle2)}})}
-  var p=t.match(/^(\d{4})\s+(\S+)\s*(.*)$/);if(p)d.veh={year:p[1],make:p[2],model:p[3]};return ask("name",T.q_name)}
- if(S.step==="vehicle2"){d.vehText=(d.vin?d.vin+" | ":"")+t;var q=t.match(/^(\d{4})\s+(\S+)\s*(.*)$/);if(q)d.veh={year:q[1],make:q[2],model:q[3]};return ask("name",T.q_name)}
+  if(/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)){d.vin=vin;return vinDecode(vin).then(function(r){if(r&&r.year&&r.make&&r.model){track('vin_ok',S.flow);d.veh=r;bot(T.vin_ok+" "+[r.year,r.make,r.model].join(" "));afterVeh()}else{track('vin_fail',S.flow);bot(T.vin_fail);ask("vehicle2",T.q_vehicle2)}})}
+  var p=t.match(/^(\d{4})\s+(\S+)\s*(.*)$/);if(p)d.veh={year:p[1],make:p[2],model:p[3]};return afterVeh()}
+ if(S.step==="vehicle2"){d.vehText=(d.vin?d.vin+" | ":"")+t;var q=t.match(/^(\d{4})\s+(\S+)\s*(.*)$/);if(q)d.veh={year:q[1],make:q[2],model:q[3]};return afterVeh()}
+ if(S.step==="mileage"){d.mileage=t.replace(/[^\w\s.,]/g,"").slice(0,20);if(d.service==="diagnosis"){ask("dtc",T.q_dtc);return chips([["skip",T.skip,function(){ask("name",T.q_name)}]])}return ask("name",T.q_name)}
+ if(S.step==="dtc"){var cs=(t.toUpperCase().match(/[PBCU][0-3][0-9A-F]{3}/g)||[]).slice(0,5);d.dtc=cs.join(", ")||t.slice(0,40);return ask("name",T.q_name)}
  if(S.step==="name"){d.name=t.slice(0,80);return ask("phone",T.q_phone)}
  if(S.step==="phone"){if(t.replace(/\D/g,"").length<10){bot(T.bad_phone);return}d.phone=t.slice(0,30);S.step="saving";return save()}
  var w=T.intent_words,x=t;
