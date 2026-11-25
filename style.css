@@ -59,3 +59,34 @@ footer .priv{opacity:.7;font-size:12px}
 @media(max-width:560px){.own{flex-direction:column;text-align:start;align-items:flex-start}}
 
 .rate{text-align:center;margin:14px 0 0;font-size:15px}.rate a{color:#2563EB;font-weight:600;text-decoration:none}.rate a:hover{text-decoration:underline}
+
+/* === Chat v2 look (theme via --ac) === */
+:root{--ac:#2563EB;--ac2:#60A5FA;--acT:#fff;--acS:#2563EB26}
+body.th-orange{--ac:#F97316;--ac2:#FDBA74;--acT:#0B1F3A;--acS:#F9731626}
+#chat{background:#0F172A;border-radius:20px;height:min(600px,calc(100vh - 32px));box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.ch{background:#0B1222;padding:14px 16px;border-bottom:1px solid #ffffff14}
+.ch b{font-size:16px}
+.av{width:40px;height:40px;background:var(--acS);color:var(--ac2)}
+.ch small.off{color:#94A3B8}.ch small.off i{background:#94A3B8}
+.ch button{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px}.ch button:hover{background:#ffffff14}
+#log{padding:16px 14px;gap:10px}
+.b{background:#1E293B;border-radius:18px;border-start-start-radius:6px;padding:10px 14px;line-height:1.5}
+.b::before{background-color:var(--ac)!important;width:26px;height:26px}
+.u{background:var(--ac);color:var(--acT);border-radius:18px;border-start-end-radius:6px;padding:10px 14px}
+.chips{gap:8px;margin-inline-start:30px}
+#log>a.chip,#log>.chip{margin-inline-start:30px}
+.chip{background:transparent;border:1px solid #334155;color:#E2E8F0;padding:9px 14px;font-size:14px;border-radius:999px}
+.chip svg{color:var(--ac2)}
+.chip:hover{background:#1E293B;border-color:var(--ac2)}
+.chip.gold,.chip.lk{background:#F59E0B26;border-color:#F59E0B;color:#FBBF24;font-weight:600}.chip.gold svg,.chip.lk svg{color:#FBBF24}
+.chip.green{background:#10B98126;border-color:#10B981;color:#34D399}.chip.green svg{color:#34D399}
+#f{padding:12px;gap:10px;background:#0B1222}
+#f input{background:#1E293B;border:1px solid #334155;border-radius:14px;padding:12px 14px;font-size:15px}
+#f input:focus{outline:none;border-color:var(--ac2)}
+#f button{background:var(--ac);color:var(--acT);width:48px;height:48px;border-radius:14px}
+#pg i{background:linear-gradient(90deg,var(--ac),var(--ac2))}
+#fab{background:var(--ac);color:var(--acT)}
+@media(max-width:600px){
+ #chat{inset:auto 0 0 0;width:100%;height:92vh;height:92dvh;border-radius:20px 20px 0 0;border:0}
+ body.chat-open::after{content:"";position:fixed;inset:0;background:rgba(2,6,23,.6);z-index:8}
+}

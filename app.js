@@ -96,4 +96,5 @@ document.querySelectorAll('.go').forEach(function(b){b.onclick=function(){openFl
 document.getElementById('x').onclick=function(){track('chat_close',S.flow,S.step);chat.hidden=true;fab.hidden=false};fab.onclick=function(){if(log.children.length){chat.hidden=false;fab.hidden=true;inp.focus()}else openFlow('book')};document.getElementById('mn').onclick=function(){chat.classList.toggle('min')};
 log.setAttribute('aria-live','polite');track('page_view');
 try{document.querySelectorAll('.lang').forEach(function(a){a.addEventListener('click',function(){localStorage.setItem('lang',a.dataset.lang)})})}catch(e){}
+(function(){try{var c=document.getElementById('chat');new MutationObserver(function(){document.body.classList.toggle('chat-open',!c.hidden)}).observe(c,{attributes:true,attributeFilter:['hidden']});var s=c.querySelector('.ch small');if(s&&!openNow()){s.className='off';s.lastChild.textContent=LANG==='ar'?'خارج ساعات العمل - اترك رسالتك':'Away - leave a message'}if(/[?&]theme=orange/.test(location.search))document.body.classList.add('th-orange')}catch(e){}})();
 })();
