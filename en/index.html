@@ -48,8 +48,8 @@ footer .priv{opacity:.7;font-size:12px}
 #fab{position:fixed;inset-inline-end:18px;bottom:18px;width:58px;height:58px;border-radius:50%;border:0;background:#F59E0B;color:#0B1F3A;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,.35);cursor:pointer;z-index:50}
 #fab:hover{transform:scale(1.06)}#fab[hidden]{display:none}
 
-#fab{background:#2563EB;color:#fff;box-shadow:0 6px 22px rgba(37,99,235,.55);animation:fabp 2.6s ease-out infinite}
-@keyframes fabp{0%{box-shadow:0 6px 22px rgba(37,99,235,.55),0 0 0 0 rgba(37,99,235,.45)}70%,100%{box-shadow:0 6px 22px rgba(37,99,235,.55),0 0 0 16px rgba(37,99,235,0)}}
+#fab{box-shadow:0 6px 22px rgba(249,115,22,.55);animation:fabp 2.6s ease-out infinite}
+@keyframes fabp{0%{box-shadow:0 6px 22px rgba(249,115,22,.55),0 0 0 0 rgba(249,115,22,.45)}70%,100%{box-shadow:0 6px 22px rgba(249,115,22,.55),0 0 0 16px rgba(249,115,22,0)}}
 @media(prefers-reduced-motion:reduce){#fab{animation:none}}
 .b::before{background:#2563EB url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z'/%3E%3C/svg%3E") center/14px no-repeat}
 
@@ -61,11 +61,11 @@ footer .priv{opacity:.7;font-size:12px}
 .faq summary{cursor:pointer;font-weight:600}.faq details p{margin:10px 0 0;line-height:1.6}
 @media(max-width:560px){.own{flex-direction:column;text-align:start;align-items:flex-start}}
 
-.rate{text-align:center;margin:14px 0 0;font-size:15px}.rate a{color:#2563EB;font-weight:600;text-decoration:none}.rate a:hover{text-decoration:underline}
+.rate{text-align:center;margin:14px 0 0;font-size:15px}.rate a{color:#C2410C;font-weight:600;text-decoration:none}.rate a:hover{text-decoration:underline}
 
 /* === Chat v2 look (theme via --ac) === */
-:root{--ac:#2563EB;--ac2:#60A5FA;--acT:#fff;--acS:#2563EB26}
-body.th-orange{--ac:#F97316;--ac2:#FDBA74;--acT:#0B1F3A;--acS:#F9731626}
+:root{--ac:#F97316;--ac2:#FDBA74;--acT:#0B1F3A;--acS:#F9731626}
+body.th-blue{--ac:#2563EB;--ac2:#60A5FA;--acT:#fff;--acS:#2563EB26}
 #chat{background:#0F172A;border-radius:20px;height:min(600px,calc(100vh - 32px));box-shadow:0 20px 60px rgba(0,0,0,.5)}
 .ch{background:#0B1222;padding:14px 16px;border-bottom:1px solid #ffffff14}
 .ch b{font-size:16px}
@@ -203,6 +203,6 @@ document.querySelectorAll('.go').forEach(function(b){b.onclick=function(){openFl
 document.getElementById('x').onclick=function(){track('chat_close',S.flow,S.step);chat.hidden=true;fab.hidden=false};fab.onclick=function(){if(log.children.length){chat.hidden=false;fab.hidden=true;inp.focus()}else openFlow('book')};document.getElementById('mn').onclick=function(){chat.classList.toggle('min')};
 log.setAttribute('aria-live','polite');track('page_view');
 try{document.querySelectorAll('.lang').forEach(function(a){a.addEventListener('click',function(){localStorage.setItem('lang',a.dataset.lang)})})}catch(e){}
-(function(){try{var c=document.getElementById('chat');new MutationObserver(function(){document.body.classList.toggle('chat-open',!c.hidden)}).observe(c,{attributes:true,attributeFilter:['hidden']});var s=c.querySelector('.ch small');if(s&&!openNow()){s.className='off';s.lastChild.textContent=LANG==='ar'?'خارج ساعات العمل - اترك رسالتك':'Away - leave a message'}if(/[?&]theme=orange/.test(location.search))document.body.classList.add('th-orange')}catch(e){}})();
+(function(){try{var c=document.getElementById('chat');new MutationObserver(function(){document.body.classList.toggle('chat-open',!c.hidden)}).observe(c,{attributes:true,attributeFilter:['hidden']});var s=c.querySelector('.ch small');if(s&&!openNow()){s.className='off';s.lastChild.textContent=LANG==='ar'?'خارج ساعات العمل - اترك رسالتك':'Away - leave a message'}if(/[?&]theme=blue/.test(location.search))document.body.classList.add('th-blue')}catch(e){}})();
 })();
 </script></body></html>
