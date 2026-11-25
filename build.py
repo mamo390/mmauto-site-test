@@ -11,7 +11,7 @@ C = {
           ("parts","Find a part","Parts and filters for your vehicle.","Find my part"),
           ("tires","Find a tire or rim","Tell us the size or your vehicle and we find it.","Find tires & rims"),
           ("book","Book an appointment","Choose a service and a time that suits you.","Start booking")],
- chat_title="M&M Auto Assistant", online="Online", chat_hello={"services":"What service do you need? Please share your name, phone and vehicle.",
+ chat_title="M&M Auto Assistant", online="Online", chat_hello={"welcome":"Hi! I'm the M&M Auto Center assistant. I can help you book an appointment, get a quote, or find a part. How can I help you today?","services":"What service do you need? Please share your name, phone and vehicle.",
   "parts":"Which part do you need? Tell me the part name and your vehicle (year, make, model) or VIN.",
   "tires":"Looking for tires or rims? Tell me which one, and I will ask for the size or your vehicle.",
   "book":"Which service and what day suit you? Please share your name and phone."},
@@ -27,7 +27,7 @@ C = {
           ("parts","ابحث عن قطعة","قطع غيار وفلاتر لسيارتك.","ابحث عن قطعتي"),
           ("tires","ابحث عن إطار أو جنط","أخبرنا بالمقاس أو سيارتك ونبحث لك عنه.","ابحث عن إطارات وجنوط"),
           ("book","احجز موعدًا","اختر الخدمة والوقت المناسب لك.","ابدأ الحجز")],
- chat_title="مساعد إم آند إم", online="متصل الآن", chat_hello={"services":"ما الخدمة التي تحتاجها؟ من فضلك أرسل اسمك ورقم هاتفك وبيانات سيارتك.",
+ chat_title="مساعد إم آند إم", online="متصل الآن", chat_hello={"welcome":"أهلًا بك! أنا مساعد مركز إم آند إم للسيارات. أستطيع مساعدتك في حجز موعد، أو طلب عرض سعر، أو البحث عن قطعة. كيف أساعدك اليوم؟","services":"ما الخدمة التي تحتاجها؟ من فضلك أرسل اسمك ورقم هاتفك وبيانات سيارتك.",
   "parts":"ما القطعة التي تحتاجها؟ اذكر اسمها وبيانات سيارتك (السنة والماركة والموديل) أو رقم الشاسيه.",
   "tires":"تبحث عن إطارات أو جنوط؟ أخبرني أيهما، وسأسألك عن المقاس أو سيارتك.",
   "book":"ما الخدمة وأي يوم يناسبك؟ من فضلك أرسل اسمك ورقم هاتفك."},
@@ -45,7 +45,7 @@ TT={"en":{
 "book_msg":"You can book online now. If you prefer, we can call you back.","book_btn":"Book online","callback":"Call me back","call":"Call us",
 "hours":"Hours: Mon-Thu 9:30 AM-6:00 PM. Fri 9:30 AM-12:00 PM and 2:00-6:00 PM (break for Friday prayer). Sat 9:30 AM-4:00 PM. Sunday closed.","loc":"We are at 1765 Shawson Dr, Unit 14, Mississauga, ON L4W 1N8.","map":"Open map","dir":"Get directions",
 "price":"Prices depend on your vehicle. Leave your details and we confirm price and availability with you.","fallback":"I can help with repairs, parts, tires and rims, or booking. Please choose an option below, or call us.",
-"chips_home":[["services","Repair & service"],["parts","Find a part"],["tires","Tires & rims"],["book","Book online"],["hours","Hours"],["loc","Location"]],
+"chips_home":[["book","Book online"],["services","Repair & service"],["parts","Find a part"],["tires","Tires & rims"],["hours","Hours"],["loc","Location"]],
 "again":"Anything else?","intent_words":{"hours":"hour|open|close|when","loc":"where|address|location|direction","price":"price|cost|quote|how much|estimate","book":"book|appoint|schedule","insp":"inspect|pre-purchase|before buy|used car|buying a car","battery":"battery|won.t start|dead battery","parts":"part|tire|brake pad|filter|oil","urgent":"urgent|asap|emergency|today|right now|broken down|stranded"}},"ar":{
 "svc":[["repair","إصلاح سيارات"],["battery","بطارية"],["prepurchase","فحص قبل شراء سيارة"],["diag","لا أعرف المشكلة"],["body","سمكرة ودهان"],["ac","صيانة التكييف"],["mobile","خدمة متنقلة (GTA)"],["other","شيء آخر"]],
 "q_service":"ما الخدمة التي تحتاجها؟","q_part":"ما القطعة التي تحتاجها؟ اذكر اسمها أو صفها.","q_kind":"ماذا تبحث عنه؟","kinds":[["tire","شراء إطارات"],["rim","شراء جنوط"],["both","إطارات وجنوط"],["swap","تبديل موسمي (الإطارات على الجنوط)"],["changeover","تغيير إطار (فك وتركيب وترصيص)"]],"q_size":"ما المقاس (مثل 205/55R16) أو سيارتك (السنة والماركة والموديل)؟ للجنوط أضف عدد وتباعد الفتحات إن عرفتهما.","q_season":"أي موسم؟","seasons":[["all","كل المواسم"],["winter","شتوي"],["summer","صيفي"]],
@@ -55,7 +55,7 @@ TT={"en":{
 "book_msg":"يمكنك الحجز عبر الإنترنت الآن. وإن فضّلت، نتصل بك نحن.","book_btn":"احجز عبر الإنترنت","callback":"اتصلوا بي","call":"اتصل بنا",
 "hours":"مواعيد العمل: الاثنين إلى الخميس 9:30 ص - 6:00 م. الجمعة 9:30 ص - 12:00 ظ ثم 2:00 - 6:00 م (استراحة صلاة الجمعة). السبت 9:30 ص - 4:00 م. الأحد مغلق.","loc":"نحن في 1765 Shawson Dr, Unit 14, Mississauga, ON L4W 1N8.","map":"افتح الخريطة","dir":"الاتجاهات إلى الورشة",
 "price":"السعر يعتمد على سيارتك. اترك بياناتك ونؤكد لك السعر والتوفر.","fallback":"أستطيع مساعدتك في الإصلاح أو قطع الغيار أو الإطارات والجنوط أو الحجز. اختر من الأزرار أدناه أو اتصل بنا.",
-"chips_home":[["services","إصلاح وصيانة"],["parts","ابحث عن قطعة"],["tires","إطارات وجنوط"],["book","احجز عبر الإنترنت"],["hours","المواعيد"],["loc","الموقع"]],
+"chips_home":[["book","احجز عبر الإنترنت"],["services","إصلاح وصيانة"],["parts","ابحث عن قطعة"],["tires","إطارات وجنوط"],["hours","المواعيد"],["loc","الموقع"]],
 "again":"هل تحتاج شيئًا آخر؟","intent_words":{"hours":"مواعيد|دوام|ساعات|متى|مفتوح","loc":"فين|وين|اين|أين|عنوان|موقع","price":"سعر|كم|تكلفة|عرض سعر|بكام","book":"حجز|احجز|موعد","insp":"فحص|قبل الشراء|مستعملة|مستعمل","battery":"بطارية|بطاريه|بطاريات","parts":"قطعة|قطع|اطار|إطار|فلتر|زيت|تيل","urgent":"عاجل|مستعجل|طارئ|الان|الآن|اليوم|معطلة|عطلانة"}}}
 for L in ("en","ar"):
     top=[[s["id"],s[L]["title"],s["flow"]] for s in K["services"] if s["chip_top"]]
