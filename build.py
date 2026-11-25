@@ -43,7 +43,7 @@ TT={"en":{
 "bad_phone":"Please enter a valid phone number (at least 10 digits).","vin_ok":"Found:","vin_fail":"I could not decode that VIN, I will save it as typed.",
 "done":"Thank you! We have your request and will contact you to confirm price and availability.","test":"(Test mode: nothing was saved.)","fail":"I could not save that right now. Please call us at (647) 448-0876.",
 "book_msg":"You can book online now. If you prefer, we can call you back.","book_btn":"Book online","callback":"Call me back","call":"Call us",
-"hours":"Hours: Mon-Fri 9:30 AM-6:00 PM, Sat 9:30 AM-4:00 PM, Sunday closed.","loc":"We are at 1765 Shawson Dr, Unit 14, Mississauga, ON L4W 1N8.","map":"Open map","dir":"Get directions",
+"hours":"Hours: Mon-Thu 9:30 AM-6:00 PM. Fri 9:30 AM-12:00 PM and 2:00-6:00 PM (break for Friday prayer). Sat 9:30 AM-4:00 PM. Sunday closed.","loc":"We are at 1765 Shawson Dr, Unit 14, Mississauga, ON L4W 1N8.","map":"Open map","dir":"Get directions",
 "price":"Prices depend on your vehicle. Leave your details and we confirm price and availability with you.","fallback":"I can help with repairs, parts, tires and rims, or booking. Please choose an option below, or call us.",
 "chips_home":[["services","Repair & service"],["parts","Find a part"],["tires","Tires & rims"],["book","Book online"],["hours","Hours"],["loc","Location"]],
 "again":"Anything else?","intent_words":{"hours":"hour|open|close|when","loc":"where|address|location|direction","price":"price|cost|quote|how much|estimate","book":"book|appoint|schedule","insp":"inspect|pre-purchase|before buy|used car|buying a car","battery":"battery|won.t start|dead battery","parts":"part|tire|brake pad|filter|oil","urgent":"urgent|asap|emergency|today|right now|broken down|stranded"}},"ar":{
@@ -53,7 +53,7 @@ TT={"en":{
 "bad_phone":"من فضلك أدخل رقم هاتف صحيحًا (10 أرقام على الأقل).","vin_ok":"تم التعرف على:","vin_fail":"لم أستطع قراءة رقم الشاسيه، سأحفظه كما كتبته.",
 "done":"شكرًا لك! وصلنا طلبك وسنتواصل معك لنؤكد السعر والتوفر.","test":"(وضع تجريبي: لم يُحفظ شيء.)","fail":"تعذّر الحفظ الآن. من فضلك اتصل بنا على (647) 448-0876.",
 "book_msg":"يمكنك الحجز عبر الإنترنت الآن. وإن فضّلت، نتصل بك نحن.","book_btn":"احجز عبر الإنترنت","callback":"اتصلوا بي","call":"اتصل بنا",
-"hours":"مواعيد العمل: الاثنين إلى الجمعة 9:30 ص - 6:00 م، السبت 9:30 ص - 4:00 م، الأحد مغلق.","loc":"نحن في 1765 Shawson Dr, Unit 14, Mississauga, ON L4W 1N8.","map":"افتح الخريطة","dir":"الاتجاهات إلى الورشة",
+"hours":"مواعيد العمل: الاثنين إلى الخميس 9:30 ص - 6:00 م. الجمعة 9:30 ص - 12:00 ظ ثم 2:00 - 6:00 م (استراحة صلاة الجمعة). السبت 9:30 ص - 4:00 م. الأحد مغلق.","loc":"نحن في 1765 Shawson Dr, Unit 14, Mississauga, ON L4W 1N8.","map":"افتح الخريطة","dir":"الاتجاهات إلى الورشة",
 "price":"السعر يعتمد على سيارتك. اترك بياناتك ونؤكد لك السعر والتوفر.","fallback":"أستطيع مساعدتك في الإصلاح أو قطع الغيار أو الإطارات والجنوط أو الحجز. اختر من الأزرار أدناه أو اتصل بنا.",
 "chips_home":[["services","إصلاح وصيانة"],["parts","ابحث عن قطعة"],["tires","إطارات وجنوط"],["book","احجز عبر الإنترنت"],["hours","المواعيد"],["loc","الموقع"]],
 "again":"هل تحتاج شيئًا آخر؟","intent_words":{"hours":"مواعيد|دوام|ساعات|متى|مفتوح","loc":"فين|وين|اين|أين|عنوان|موقع","price":"سعر|كم|تكلفة|عرض سعر|بكام","book":"حجز|احجز|موعد","insp":"فحص|قبل الشراء|مستعملة|مستعمل","battery":"بطارية|بطاريه|بطاريات","parts":"قطعة|قطع|اطار|إطار|فلتر|زيت|تيل","urgent":"عاجل|مستعجل|طارئ|الان|الآن|اليوم|معطلة|عطلانة"}}}
@@ -64,7 +64,7 @@ for L in ("en","ar"):
     TT[L]["svc_top"]=top+[["more","More services…" if L=="en" else "خدمات أخرى…","more"]]
     TT[L]["svc_rest"]=rest+other
     TT[L]["q_used"]="What kind of used car are you looking for (type, budget, year)?" if L=="en" else "ما نوع السيارة المستعملة التي تبحث عنها (النوع، الميزانية، السنة)؟"
-    TT[L]["closed_note"]="We are closed right now. We will reply when we open (Mon-Fri 9:30 AM-6:00 PM, Sat 9:30 AM-4:00 PM)." if L=="en" else "نحن مغلقون الآن. سنرد عليك عند فتح الورشة (الاثنين-الجمعة 9:30 ص-6:00 م، السبت 9:30 ص-4:00 م)."
+    TT[L]["closed_note"]="We are closed right now. We will reply when we open (Mon-Thu 9:30 AM-6:00 PM, Fri 9:30-12:00 and 2:00-6:00 PM, Sat 9:30 AM-4:00 PM)." if L=="en" else "نحن مغلقون الآن. سنرد عليك عند فتح الورشة (الاثنين-الخميس 9:30 ص-6:00 م، الجمعة 9:30-12:00 ثم 2:00-6:00 م، السبت 9:30 ص-4:00 م)."
     TT[L]["open_now"]="We are open now." if L=="en" else "نحن مفتوحون الآن."
     TT[L]["closed_now"]="We are closed right now." if L=="en" else "نحن مغلقون الآن."
     del TT[L]["svc"]
@@ -73,6 +73,7 @@ for L in ("en","ar"):
     TT[L]["done_more"]="We added this to your earlier request from today. We will contact you to confirm." if L=="en" else "أضفنا هذا إلى طلبك السابق اليوم. سنتواصل معك للتأكيد."
     C[L]["addr"]=K["business"]["address"].replace(", ON L4W 1N8","")
 
+RT={"en":"4.8 on Google (69 reviews, Nov 2026) - read our reviews","ar":"4.8 على Google (69 تقييمًا، نوفمبر 2026) - اقرأ التقييمات"}
 OWN={"en":{"h":"Talk to Mohamed","p":"I am the owner of M&M Auto Center. Tell us what your car needs and I will make sure you get a clear answer. English or Arabic, whichever is easier for you.","b":"Chat with us","n":"Mohamed, owner"},
 "ar":{"h":"تحدّث مع محمد","p":"أنا صاحب M&M Auto Center. أخبرنا بما تحتاجه سيارتك وسأحرص أن تحصل على جواب واضح. بالعربية أو الإنجليزية، كما يريحك.","b":"ابدأ المحادثة","n":"محمد، صاحب الورشة"}}
 FAQ={"en":{"h":"Common questions","q":[
@@ -81,14 +82,14 @@ FAQ={"en":{"h":"Common questions","q":[
 ["Can I book online?","Yes. Use the Book online button, or start the chat and choose Book online."],
 ["Do you offer pre-purchase inspections?","Yes. Tell us the car you are thinking of buying and we inspect it before you buy."],
 ["Which languages do you speak?","English and Arabic. The whole website and the chat are available in both."],
-["When are you open?","Monday to Friday 9:30 AM to 6:00 PM, Saturday 9:30 AM to 4:00 PM, closed Sunday. The chat takes your request at any hour and we reply when we open."]]},
+["When are you open?","Monday to Thursday 9:30 AM to 6:00 PM. Friday 9:30 AM to 12:00 PM and 2:00 to 6:00 PM, with a break for Friday prayer. Saturday 9:30 AM to 4:00 PM. Closed Sunday. The chat takes your request at any hour and we reply when we open."]]},
 "ar":{"h":"أسئلة شائعة","q":[
 ["كيف أعرف السعر؟","السعر يعتمد على سيارتك والقطعة. أرسل طلبك في الشات أو اتصل بنا ونؤكد لك السعر والتوفر. لا ننشر الأسعار على الموقع."],
 ["ماذا تحتاجون لتعطوني عرض سعر؟","سنة وماركة وموديل السيارة أو رقم الشاسيه (17 خانة)، ووصف قصير لما تحتاجه."],
 ["هل أستطيع الحجز عبر الإنترنت؟","نعم. استخدم زر احجز عبر الإنترنت، أو ابدأ المحادثة واختر الحجز."],
 ["هل تقدمون فحصًا قبل شراء السيارة؟","نعم. أخبرنا بالسيارة التي تفكر بشرائها ونفحصها لك قبل الشراء."],
 ["ما اللغات التي تتحدثونها؟","العربية والإنجليزية. الموقع كله والشات متاحان باللغتين."],
-["متى ساعات العمل؟","الاثنين إلى الجمعة 9:30 ص إلى 6:00 م، السبت 9:30 ص إلى 4:00 م، الأحد مغلق. الشات يستقبل طلبك في أي ساعة ونرد عند فتح الورشة."]]}}
+["متى ساعات العمل؟","الاثنين إلى الخميس 9:30 ص إلى 6:00 م. الجمعة 9:30 ص إلى 12:00 ظهرًا ثم 2:00 إلى 6:00 م مع استراحة لصلاة الجمعة. السبت 9:30 ص إلى 4:00 م. الأحد مغلق. الشات يستقبل طلبك في أي ساعة ونرد عند فتح الورشة."]]}}
 CSS = open("style.css").read()
 JS = open("app.js").read()
 for k,c in C.items():
@@ -108,6 +109,7 @@ for k,c in C.items():
 <div class="cta"><button class="go big" data-k="book">{c["cta"]}</button><a class="call" href="tel:+16474480876">{c["call"]}</a></div></div>
 <img class="hero-img" src="../img/hero.png" alt=""></section>
 <main><div class="grid">{cards}</div><p class="note">{c["note"]}</p>
+<p class="rate"><a href="https://www.google.com/maps/search/?api=1&amp;query=M%26M+Auto+Center+1765+Shawson+Dr+Unit+14+Mississauga" target="_blank" rel="noopener">&#9733; {RT[k]}</a></p>
 <section class="own"><div class="av2" aria-hidden="true">M</div><div><h2>{OWN[k]["h"]}</h2><p>{OWN[k]["p"]}</p><button class="go" data-k="book">{OWN[k]["b"]}</button><small>{OWN[k]["n"]}</small></div></section>
 <section class="faq"><h2>{FAQ[k]["h"]}</h2>{faqhtml}</section></main>
 <footer><div>{c["addr"]}</div><div>(647) 448-0876</div><div>{c["foot"]}</div><div class="priv">{c["priv"]}</div></footer>

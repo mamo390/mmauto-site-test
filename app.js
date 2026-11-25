@@ -7,7 +7,7 @@ var LIVE=/(^|\.)mmautocenter\.ca$/.test(location.hostname),STAGE=/\.github\.io$/
 var chat=document.getElementById('chat'),log=document.getElementById('log'),inp=document.getElementById('m'),form=document.getElementById('f');
 var sid=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():"00000000-0000-4000-8000-"+Date.now().toString(16).padStart(12,"0").slice(-12);
 var S={step:"idle",flow:"",d:{}};
-function openNow(){try{var p={};new Intl.DateTimeFormat('en-CA',{timeZone:TZ,weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date()).forEach(function(x){p[x.type]=x.value});var h=HRS[p.weekday];if(!h)return false;var n=(+p.hour%24)*60+ +p.minute,a=h[0].split(':'),z=h[1].split(':');return n>=(+a[0])*60+ +a[1]&&n<(+z[0])*60+ +z[1]}catch(e){return true}}
+function openNow(){try{var p={};new Intl.DateTimeFormat('en-CA',{timeZone:TZ,weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date()).forEach(function(x){p[x.type]=x.value});var h=HRS[p.weekday];if(!h)return false;var n=(+p.hour%24)*60+ +p.minute,R=typeof h[0]==='string'?[h]:h;return R.some(function(r){var a=r[0].split(':'),z=r[1].split(':');return n>=(+a[0])*60+ +a[1]&&n<(+z[0])*60+ +z[1]})}catch(e){return true}}
 function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
 function scroll(){log.scrollTop=log.scrollHeight}
 function bot(t){log.appendChild(el('div','b',t));scroll()}
