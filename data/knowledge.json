@@ -191,19 +191,6 @@
    "chip_top": true
   },
   {
-   "id": "mobile",
-   "en": {
-    "title": "Mobile Services",
-    "desc": "Service that comes to you in the GTA."
-   },
-   "ar": {
-    "title": "خدمات متنقلة",
-    "desc": "خدمة تصل إليك في منطقة تورونتو الكبرى."
-   },
-   "flow": "vehicle",
-   "chip_top": false
-  },
-  {
    "id": "ev",
    "en": {
     "title": "EV Services",
