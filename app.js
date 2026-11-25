@@ -37,7 +37,7 @@ function ask(step,q){var d=S.d;
  if(step==="name"&&P.name&&P.phone&&d.service){d.name=P.name;d.phone=P.phone;bot(T.known.replace("{n}",P.name));S.step="saving";return save()}
  if(step==="vehicle"&&P.veh&&!d.veh&&!S.vehAsked){S.vehAsked=1;var vt=[P.veh.year,P.veh.make,P.veh.model].filter(Boolean).join(" ");bot(T.same_veh.replace("{v}",vt));return chips([["yes",T.yes,function(){d.veh=P.veh;d.vin=P.vin||null;d.vehText=P.vehText||vt;pin();afterVeh()}],["other",T.other,function(){ask("vehicle",q)}]])}
  S.step=step;track('step',S.flow||S.d.service,step);prog(step);pin();bot(q);inp.focus()}
-function afterVeh(){var d=S.d;if(d.service==="diagnosis")return ask("mileage",T.q_mileage);if(d.service==="pre_purchase_inspection")return ask("mileage",T.q_mileage_buy);ask("name",T.q_name)}
+function afterVeh(){var d=S.d;if(d.service==="diagnosis")return ask("mileage",T.q_mileage);if(d.service==="pre_purchase_inspection")return ask("mileage",T.q_mileage_buy);if(d.service==="car_valuation_sell")return ask("mileage",T.q_mileage);if(d.service==="car_valuation_buy")return ask("mileage",T.q_mileage_buy);ask("name",T.q_name)}
 function start(k){
  S={step:"idle",flow:k,d:{}};track('flow_start',k);
  if(k==="hours"){bot(T.hours);bot(openNow()?T.open_now:T.closed_now);return home()}
@@ -46,7 +46,7 @@ function start(k){
  if(k==="battery"){S.d.service="battery";ask("vehicle",T.q_battery);return}
  if(k==="prepurchase"){S.d.service="pre_purchase_inspection";ask("vehicle",T.q_buy);return}
  if(k==="diag"){S.d.service="diagnosis";ask("symptom",T.q_symptom);return}
- if(k==="used"){S.d.service="used_car_inquiry";ask("want",T.q_used);return}
+ if(k==="used"){bot(T.used_intro);return chips([["used",T.used_buy,function(){S.d.service="used_car_inquiry";ask("want",T.q_used)}],["used",T.used_sell,function(){S.d.service="car_valuation_sell";ask("vehicle",T.q_vehicle)}],["used",T.used_price,function(){S.d.service="car_valuation_buy";ask("vehicle",T.q_vehicle)}]])}
  if(k==="services"){bot(T.q_service);function pick(c){return [c[0],c[1],function(){if(c[2]==="more"){return chips(T.svc_rest.map(pick))}if(c[2]==="tires")return start("tires");if(c[2]!=="vehicle")return start(c[2]);S.d.service=c[0];if(c[0]==="other")return ask("symptom",T.q_symptom);ask("vehicle",T.q_vehicle)}]}chips(T.svc_top.map(pick));return}
  if(k==="parts"){S.d.service="parts";ask("part",T.q_part);return}
  if(k==="tires"){bot(T.q_kind);chips(T.kinds.map(function(c){return [c[0],c[1],function(){if(c[0]==="swap"||c[0]==="changeover"){S.d.service="tire_"+c[0];S.d.part=c[1];return ask("vehicle",T.q_vehicle)}S.d.service=c[0]==="rim"?"rims":"tires";S.d.kind=c[0];ask("size",T.q_size)}]}));return}

@@ -191,27 +191,14 @@
    "chip_top": true
   },
   {
-   "id": "ev",
-   "en": {
-    "title": "EV Services",
-    "desc": "Service for electric vehicles. Tell us your model and what you need."
-   },
-   "ar": {
-    "title": "خدمات السيارات الكهربائية",
-    "desc": "خدمة للسيارات الكهربائية. أخبرنا بموديلك وما تحتاجه."
-   },
-   "flow": "vehicle",
-   "chip_top": false
-  },
-  {
    "id": "used",
    "en": {
-    "title": "Used Car Sales",
-    "desc": "Used cars for sale. Tell us what you are looking for."
+    "title": "Used Cars & Car Valuation",
+    "desc": "Licensed dealer since 2011. Buy a used car, or get a car valued using current auction market prices."
    },
    "ar": {
-    "title": "بيع سيارات مستعملة",
-    "desc": "سيارات مستعملة للبيع. أخبرنا بما تبحث عنه."
+    "title": "سيارات مستعملة وتقييم السيارات",
+    "desc": "تاجر مرخّص منذ 2011. شراء سيارة مستعملة، أو تقييم سيارة بناءً على أسعار المزادات الحالية."
    },
    "flow": "used",
    "chip_top": false

@@ -7,7 +7,7 @@ C = {
  h1="Tell us what your car needs. We take it from there.",
  sub="Pick an option, our chat asks a few quick questions, and we confirm price and availability with you.",
  cta="Chat to book", call="Call (647) 448-0876",
- choices=[("services","Repair & service","Repairs, A/C, battery, diagnostics and pre-purchase inspections.","Book a repair"),
+ choices=[("services","Repair & service","Repairs, collision, A/C, battery, diagnostics and pre-purchase inspections.","Book a repair"),
           ("parts","Find a part","Parts and filters for your vehicle.","Find my part"),
           ("tires","Find a tire or rim","Tell us the size or your vehicle and we find it.","Find tires & rims"),
           ("book","Book an appointment","Choose a service and a time that suits you.","Start booking")],
@@ -23,7 +23,7 @@ C = {
  h1="أخبرنا بما تحتاجه سيارتك، ونتولى الباقي.",
  sub="اختر خيارًا، وسيسألك الشات بضعة أسئلة سريعة، ثم نؤكد لك السعر والتوفر.",
  cta="احجز عبر الشات", call="اتصل (647) 448-0876",
- choices=[("services","إصلاح وصيانة","إصلاحات وتكييف وبطاريات وتشخيص وفحص ما قبل الشراء.","احجز إصلاحًا"),
+ choices=[("services","إصلاح وصيانة","إصلاحات وحوادث وتكييف وبطاريات وتشخيص وفحص ما قبل الشراء.","احجز إصلاحًا"),
           ("parts","ابحث عن قطعة","قطع غيار وفلاتر لسيارتك.","ابحث عن قطعتي"),
           ("tires","ابحث عن إطار أو جنط","أخبرنا بالمقاس أو سيارتك ونبحث لك عنه.","ابحث عن إطارات وجنوط"),
           ("book","احجز موعدًا","اختر الخدمة والوقت المناسب لك.","ابدأ الحجز")],
@@ -63,6 +63,7 @@ for L in ("en","ar"):
     other=[["other","Something else" if L=="en" else "شيء آخر","vehicle"]]
     TT[L]["svc_top"]=top+[["more","More services…" if L=="en" else "خدمات أخرى…","more"]]
     TT[L]["svc_rest"]=rest+other
+    TT[L].update({"used_intro":"We are a licensed car dealer since 2011. We value cars using current auction market prices. What do you need?","used_buy":"Buy a used car","used_sell":"Value my car (to sell)","used_price":"Check a car's real price before buying"} if L=="en" else {"used_intro":"نحن تاجر سيارات مرخّص منذ 2011، ونقيّم السيارات بناءً على أسعار المزادات الحالية في السوق. ماذا تحتاج؟","used_buy":"شراء سيارة مستعملة","used_sell":"تقييم سيارتي للبيع","used_price":"تقييم سعر سيارة أريد شراءها"})
     TT[L]["q_used"]="What kind of used car are you looking for (type, budget, year)?" if L=="en" else "ما نوع السيارة المستعملة التي تبحث عنها (النوع، الميزانية، السنة)؟"
     TT[L]["closed_note"]="We are closed right now. We will reply when we open (Mon-Thu 9:30 AM-6:00 PM, Fri 9:30-12:00 and 2:00-6:00 PM, Sat 9:30 AM-4:00 PM)." if L=="en" else "نحن مغلقون الآن. سنرد عليك عند فتح الورشة (الاثنين-الخميس 9:30 ص-6:00 م، الجمعة 9:30-12:00 ثم 2:00-6:00 م، السبت 9:30 ص-4:00 م)."
     TT[L]["open_now"]="We are open now." if L=="en" else "نحن مفتوحون الآن."
