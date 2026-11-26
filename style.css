@@ -90,3 +90,22 @@ body.th-blue{--ac:#2563EB;--ac2:#60A5FA;--acT:#fff;--acS:#2563EB26}
  #chat{inset:auto 0 0 0;width:100%;height:92vh;height:92dvh;border-radius:20px 20px 0 0;border:0}
  body.chat-open::after{content:"";position:fixed;inset:0;background:rgba(2,6,23,.6);z-index:8}
 }
+
+/* top bar, review link, mobile dock, reels */
+.topbar{display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:center;padding:6px 12px;background:#060B16;color:#CBD5E1;font-size:13px}
+.topbar a{color:#CBD5E1;text-decoration:none}
+#ost{font-weight:700}#ost.on{color:#4ADE80}#ost.off{color:#FCA5A5}
+.rate .rv{color:#C2410C;font-weight:700}
+.dock{display:none}
+@media(max-width:600px){
+ .topbar a:first-of-type{display:none}
+ .dock{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:7;background:#0B1222;border-top:1px solid #1E293B;justify-content:space-around;padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
+ .dock a,.dock button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;color:#F1F5F9;text-decoration:none;font-size:18px;background:none;border:0;padding:4px 0;cursor:pointer}
+ .dock span{font-size:11px;color:#CBD5E1}
+ .dock .dkc span{color:#FDBA74}
+ #fab{display:none}
+ body{padding-bottom:64px}
+ body.chat-open .dock{display:none}
+}
+.reels{max-width:1100px;margin:24px auto;padding:0 16px}.reels .rl{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.reels a{display:block;padding:14px;border-radius:12px;background:#0F172A;color:#F1F5F9;text-decoration:none}.reels a b{display:block;color:#F97316}

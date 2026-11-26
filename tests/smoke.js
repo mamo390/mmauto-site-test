@@ -37,8 +37,13 @@ async function check(lang) {
     if (id && !d.getElementById(id)) fail(`link "${a.textContent.trim()}" → #${id} has no target`);
   });
 
+  // 1b) open/closed status must be filled
+  await wait(50);
+  const os = d.getElementById('ost');
+  if (!os || !os.textContent.trim()) fail('top bar open/closed status is empty'); else ok('top bar: ' + os.textContent.trim());
+
   // 2) every header link and card button opens the chat with welcome + ≤1 question
-  const triggers = [...d.querySelectorAll('nav .nv, .go')].map((e, i) => ({ i, sel: e.matches('nav .nv') ? 'nav .nv' : '.go', idx: [...d.querySelectorAll(e.matches('nav .nv') ? 'nav .nv' : '.go')].indexOf(e), label: e.textContent.trim() }));
+  const triggers = [...d.querySelectorAll('nav .nv, .go, .dock .dkc')].map((e, i) => { const sel = e.matches('nav .nv') ? 'nav .nv' : e.matches('.dock .dkc') ? '.dock .dkc' : '.go'; return { i, sel, idx: [...d.querySelectorAll(sel)].indexOf(e), label: e.textContent.trim() }; });
   for (const t of triggers) {
     w = load(lang); // fresh page for each click
     await wait(50);

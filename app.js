@@ -93,7 +93,7 @@ function handle(t){
  bot(T.fallback);home();link(T.call,"tel:+16474480876")
 }
 form.onsubmit=function(e){e.preventDefault();var t=inp.value.trim();if(!t)return;inp.value='';user(t);handle(t)};
-document.querySelectorAll('.go').forEach(function(b){b.onclick=function(){openFlow(b.dataset.k)}});document.querySelectorAll('nav .nv').forEach(function(a){a.onclick=function(){openFlow(a.dataset.k)}});
+document.querySelectorAll('.go').forEach(function(b){b.onclick=function(){openFlow(b.dataset.k)}});document.querySelectorAll('nav .nv').forEach(function(a){a.onclick=function(){openFlow(a.dataset.k)}});document.querySelectorAll('.dock .dkc').forEach(function(b){b.onclick=function(){if(log.children.length){chat.hidden=false;fab.hidden=true}else openFlow('welcome')}});var OS=document.getElementById('ost');function ost(){if(!OS)return;var o=openNow();OS.textContent=o?OS.dataset.open:OS.dataset.closed;OS.className=o?'on':'off'}ost();setInterval(ost,60000);
 document.getElementById('x').onclick=function(){track('chat_close',S.flow,S.step);chat.hidden=true;fab.hidden=false};fab.onclick=function(){if(log.children.length){chat.hidden=false;fab.hidden=true;inp.focus()}else openFlow('welcome')};document.getElementById('mn').onclick=function(){chat.classList.toggle('min')};
 log.setAttribute('aria-live','polite');track('page_view');
 try{document.querySelectorAll('.lang').forEach(function(a){a.addEventListener('click',function(){localStorage.setItem('lang',a.dataset.lang)})})}catch(e){}

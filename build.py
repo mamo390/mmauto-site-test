@@ -74,6 +74,7 @@ for L in ("en","ar"):
     TT[L]["done_more"]="We added this to your earlier request from today. We will contact you to confirm." if L=="en" else "أضفنا هذا إلى طلبك السابق اليوم. سنتواصل معك للتأكيد."
     C[L]["addr"]=K["business"]["address"].replace(", ON L4W 1N8","")
 
+UI={"en":{"open":"Open now","closed":"Closed now - book online 24/7","review":"Leave a Google review","call":"Call","dir":"Directions","waze":"Waze","chat":"Chat","book":"Book","reels":"See our work"},"ar":{"open":"مفتوح الآن","closed":"مغلق الآن - احجز أونلاين 24/7","review":"اكتب تقييمك على Google","call":"اتصل","dir":"الاتجاهات","waze":"Waze","chat":"الشات","book":"احجز","reels":"شاهد أعمالنا"}}
 RT={"en":"4.8 on Google (69 reviews, Nov 2026) - read our reviews","ar":"4.8 على Google (69 تقييمًا، نوفمبر 2026) - اقرأ التقييمات"}
 OWN={"en":{"h":"Talk to Mohamed","p":"I am the owner of M&M Auto Center. Tell us what your car needs and I will make sure you get a clear answer. English or Arabic, whichever is easier for you.","b":"Chat with us","n":"Mohamed, owner"},
 "ar":{"h":"تحدّث مع محمد","p":"أنا صاحب M&M Auto Center. أخبرنا بما تحتاجه سيارتك وسأحرص أن تحصل على جواب واضح. بالعربية أو الإنجليزية، كما يريحك.","b":"ابدأ المحادثة","n":"محمد، صاحب الورشة"}}
@@ -100,20 +101,24 @@ for k,c in C.items():
         cards += f'<article class="card" id="{key}" style="--c:{CLR[key]}"><div class="im">{img}</div><div class="bd"><h3>{t}</h3><p>{d}</p><button class="go" data-k="{key}">{b}</button></div></article>'
     k=[x for x in C if C[x] is c][0]
     faqhtml=''.join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q,a in FAQ[k]['q'])
+    R=K.get("reels",[])
+    REELS=('<section class="reels"><h2>'+UI[k]["reels"]+'</h2><div class="rl">'+"".join(f'<a href="{r["url"]}" target="_blank" rel="noopener"><b>{r["platform"]}</b><span>{r.get("title_"+k) or r.get("title_en","")}</span></a>' for r in R)+'</div></section>') if R else ""
     nav = "".join(f'<a href="#{a}" class="nv" data-k="{a}">{n}</a>' for a,n in zip(["services","parts","tires","book"],c["nav"]))
     html = f'''<!doctype html><html lang="{c["lang"]}" dir="{c["dir"]}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{c["title"]}</title><meta name="description" content="{c["desc"]}">
 <link rel="alternate" hreflang="en" href="https://mmautocenter.ca/en/"><link rel="alternate" hreflang="ar" href="https://mmautocenter.ca/ar/"><link rel="alternate" hreflang="x-default" href="https://mmautocenter.ca/en/">
 <style>{CSS}</style><script type="application/ld+json">{json.dumps({"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in FAQ[k]["q"]]},ensure_ascii=False)}</script></head><body>
+<div class="topbar"><span id="ost" data-open="{UI[k]["open"]}" data-closed="{UI[k]["closed"]}"></span><a href="https://www.google.com/maps/dir/?api=1&amp;destination=1765+Shawson+Dr+Unit+14+Mississauga+ON" target="_blank" rel="noopener">{c["addr"]}</a><a href="tel:+16474480876">(647) 448-0876</a></div>
 <header><div class="logo">M&amp;M <span>Auto Center</span></div><nav>{nav}</nav><a class="lang" href="../{c["other"]}/" data-lang="{c["other"]}">{c["other_label"]}</a></header>
 <section class="hero"><div class="hero-in"><p class="tag">{c["tagline"]}</p><h1>{c["h1"]}</h1><p class="sub">{c["sub"]}</p>
 <div class="cta"><button class="go big" data-k="book">{c["cta"]}</button><a class="call" href="tel:+16474480876">{c["call"]}</a></div></div>
 <img class="hero-img" src="../img/hero.png" alt=""></section>
 <main><div class="grid">{cards}</div><p class="note">{c["note"]}</p>
-<p class="rate"><a href="https://www.google.com/maps/search/?api=1&amp;query=M%26M+Auto+Center+1765+Shawson+Dr+Unit+14+Mississauga" target="_blank" rel="noopener">&#9733; {RT[k]}</a></p>
+<p class="rate"><a href="https://www.google.com/maps/search/?api=1&amp;query=M%26M+Auto+Center+1765+Shawson+Dr+Unit+14+Mississauga" target="_blank" rel="noopener">&#9733; {RT[k]}</a> · <a class="rv" href="{K["business"]["review_url"]}" target="_blank" rel="noopener">{UI[k]["review"]}</a></p>{REELS}
 <section class="own"><div class="av2" aria-hidden="true">M</div><div><h2>{OWN[k]["h"]}</h2><p>{OWN[k]["p"]}</p><button class="go" data-k="book">{OWN[k]["b"]}</button><small>{OWN[k]["n"]}</small></div></section>
 <section class="faq"><h2>{FAQ[k]["h"]}</h2>{faqhtml}</section></main>
 <footer><div>{c["addr"]}</div><div>(647) 448-0876</div><div>{c["foot"]}</div><div class="priv">{c["priv"]}</div></footer>
+<nav class="dock" aria-label="quick actions"><a href="tel:+16474480876">&#128222;<span>{UI[k]["call"]}</span></a><a href="https://www.google.com/maps/dir/?api=1&amp;destination=1765+Shawson+Dr+Unit+14+Mississauga+ON" target="_blank" rel="noopener">&#128205;<span>{UI[k]["dir"]}</span></a><a href="https://waze.com/ul?q=1765%20Shawson%20Dr%20Mississauga&amp;navigate=yes" target="_blank" rel="noopener">&#128663;<span>{UI[k]["waze"]}</span></a><button type="button" class="dkc" data-k="welcome">&#128172;<span>{UI[k]["chat"]}</span></button><a href="{K["business"]["booking_url"]}" target="_blank" rel="noopener">&#128197;<span>{UI[k]["book"]}</span></a></nav>
 <button id="fab" type="button" aria-label="{c["chat_title"]}"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01" stroke-width="2.6"/></svg></button><aside id="chat" hidden><div class="ch"><span class="av"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 14h.01M15 14h.01"/></svg></span><div class="tt"><b>{c["chat_title"]}</b><small><i></i>{c["online"]}</small></div><button id="mn" aria-label="minimize">&#8722;</button><button id="x" aria-label="{c["close"]}">&times;</button></div><div id="vc" hidden></div><div id="pg" hidden><i></i></div><div id="log"></div>
 <form id="f"><input id="m" placeholder="{c["ph"]}" autocomplete="off"><button aria-label="{c["send"]}"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4zM22 2 11 13"/></svg></button></form></aside>
 <script>const HELLO={json.dumps(c["chat_hello"],ensure_ascii=False)};const T={json.dumps(TT[k],ensure_ascii=False)};const LANG="{k}";const HRS={json.dumps(K["hours"])};const TZ="{K["business"]["timezone"]}";const BOOK="{K["business"]["booking_url"]}";const INTAKE="{K["business"].get("intake_url","")}";{JS}</script></body></html>'''

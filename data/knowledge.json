@@ -1,207 +1,210 @@
 {
- "business": {
-  "name": "M&M Auto Center Inc.",
-  "address": "1765 Shawson Dr, Unit 14, Mississauga, ON L4W 1N8",
-  "phone": "(647) 448-0876",
-  "phone_tel": "+16474480876",
-  "instagram": "@mmauto_mississauga",
-  "booking_url": "https://portal.ari.app/booking?FBProject=ARI&shopID=ZM83fAGtsSaZeTPLvxw3cTJLCYq1&version=v.15.9.20",
-  "timezone": "America/Toronto",
-  "intake_url": ""
- },
- "hours": {
-  "Mon": [
-   "09:30",
-   "18:00"
+  "business": {
+    "name": "M&M Auto Center Inc.",
+    "address": "1765 Shawson Dr, Unit 14, Mississauga, ON L4W 1N8",
+    "phone": "(647) 448-0876",
+    "phone_tel": "+16474480876",
+    "instagram": "@mmauto_mississauga",
+    "booking_url": "https://portal.ari.app/booking?FBProject=ARI&shopID=ZM83fAGtsSaZeTPLvxw3cTJLCYq1&version=v.15.9.20",
+    "timezone": "America/Toronto",
+    "intake_url": "",
+    "place_id": "ChIJG30Cg-4_K4gRJhP0S0gM8Ec",
+    "review_url": "https://search.google.com/local/writereview?placeid=ChIJG30Cg-4_K4gRJhP0S0gM8Ec"
+  },
+  "hours": {
+    "Mon": [
+      "09:30",
+      "18:00"
+    ],
+    "Tue": [
+      "09:30",
+      "18:00"
+    ],
+    "Wed": [
+      "09:30",
+      "18:00"
+    ],
+    "Thu": [
+      "09:30",
+      "18:00"
+    ],
+    "Fri": [
+      [
+        "09:30",
+        "12:00"
+      ],
+      [
+        "14:00",
+        "18:00"
+      ]
+    ],
+    "Sat": [
+      "09:30",
+      "16:00"
+    ],
+    "Sun": null
+  },
+  "rules": {
+    "prices": "quote_only",
+    "note": "The bot never states prices. It collects the request and the shop confirms price and availability."
+  },
+  "services": [
+    {
+      "id": "oil",
+      "en": {
+        "title": "Engine Oil & Filter",
+        "desc": "Oil and filter change for your vehicle."
+      },
+      "ar": {
+        "title": "تغيير زيت المحرك والفلتر",
+        "desc": "تغيير الزيت والفلتر لسيارتك."
+      },
+      "flow": "vehicle",
+      "chip_top": true
+    },
+    {
+      "id": "tires",
+      "en": {
+        "title": "Tires Sales & Seasonal Swap",
+        "desc": "Buy tires or rims, or book a seasonal swap."
+      },
+      "ar": {
+        "title": "بيع الإطارات والتبديل الموسمي",
+        "desc": "شراء إطارات أو جنوط، أو حجز تبديل موسمي."
+      },
+      "flow": "tires",
+      "chip_top": true
+    },
+    {
+      "id": "ac",
+      "en": {
+        "title": "A/C Service",
+        "desc": "Air conditioning check and service."
+      },
+      "ar": {
+        "title": "صيانة التكييف",
+        "desc": "فحص وصيانة التكييف."
+      },
+      "flow": "vehicle",
+      "chip_top": true
+    },
+    {
+      "id": "diag",
+      "en": {
+        "title": "Diagnostics & Check Engine",
+        "desc": "Check-engine light and fault diagnosis."
+      },
+      "ar": {
+        "title": "الفحص الكمبيوتري وضوء المحرك",
+        "desc": "ضوء المحرك وتشخيص الأعطال."
+      },
+      "flow": "diag",
+      "chip_top": true
+    },
+    {
+      "id": "battery",
+      "en": {
+        "title": "Battery Services",
+        "desc": "Battery testing and replacement."
+      },
+      "ar": {
+        "title": "خدمات البطاريات",
+        "desc": "فحص البطارية وتبديلها."
+      },
+      "flow": "battery",
+      "chip_top": true
+    },
+    {
+      "id": "electrical",
+      "en": {
+        "title": "Electrical",
+        "desc": "Electrical faults and repairs."
+      },
+      "ar": {
+        "title": "الكهرباء",
+        "desc": "أعطال وإصلاحات كهربائية."
+      },
+      "flow": "vehicle",
+      "chip_top": false
+    },
+    {
+      "id": "brakes",
+      "en": {
+        "title": "Brakes",
+        "desc": "Brake inspection and repair."
+      },
+      "ar": {
+        "title": "الفرامل",
+        "desc": "فحص وإصلاح الفرامل."
+      },
+      "flow": "vehicle",
+      "chip_top": true
+    },
+    {
+      "id": "detailing",
+      "en": {
+        "title": "Detailing",
+        "desc": "Interior and exterior detailing."
+      },
+      "ar": {
+        "title": "التلميع والتنظيف",
+        "desc": "تنظيف وتلميع داخلي وخارجي."
+      },
+      "flow": "vehicle",
+      "chip_top": false
+    },
+    {
+      "id": "glass",
+      "en": {
+        "title": "Glass Replacement",
+        "desc": "Windshield and glass replacement."
+      },
+      "ar": {
+        "title": "تبديل الزجاج",
+        "desc": "تبديل الزجاج الأمامي وزجاج السيارة."
+      },
+      "flow": "vehicle",
+      "chip_top": false
+    },
+    {
+      "id": "collision",
+      "en": {
+        "title": "Collision Repair",
+        "desc": "Collision and body repair."
+      },
+      "ar": {
+        "title": "إصلاح الحوادث والسمكرة",
+        "desc": "إصلاح الحوادث والسمكرة."
+      },
+      "flow": "vehicle",
+      "chip_top": true
+    },
+    {
+      "id": "prepurchase",
+      "en": {
+        "title": "Pre-Purchase Inspection",
+        "desc": "We inspect a used car before you buy it."
+      },
+      "ar": {
+        "title": "فحص قبل الشراء",
+        "desc": "نفحص السيارة المستعملة قبل أن تشتريها."
+      },
+      "flow": "prepurchase",
+      "chip_top": true
+    },
+    {
+      "id": "used",
+      "en": {
+        "title": "Used Cars & Car Valuation",
+        "desc": "Licensed dealer since 2011. Buy a used car, or get a car valued using current auction market prices."
+      },
+      "ar": {
+        "title": "سيارات مستعملة وتقييم السيارات",
+        "desc": "تاجر مرخّص منذ 2011. شراء سيارة مستعملة، أو تقييم سيارة بناءً على أسعار المزادات الحالية."
+      },
+      "flow": "used",
+      "chip_top": false
+    }
   ],
-  "Tue": [
-   "09:30",
-   "18:00"
-  ],
-  "Wed": [
-   "09:30",
-   "18:00"
-  ],
-  "Thu": [
-   "09:30",
-   "18:00"
-  ],
-  "Fri": [
-   [
-    "09:30",
-    "12:00"
-   ],
-   [
-    "14:00",
-    "18:00"
-   ]
-  ],
-  "Sat": [
-   "09:30",
-   "16:00"
-  ],
-  "Sun": null
- },
- "rules": {
-  "prices": "quote_only",
-  "note": "The bot never states prices. It collects the request and the shop confirms price and availability."
- },
- "services": [
-  {
-   "id": "oil",
-   "en": {
-    "title": "Engine Oil & Filter",
-    "desc": "Oil and filter change for your vehicle."
-   },
-   "ar": {
-    "title": "تغيير زيت المحرك والفلتر",
-    "desc": "تغيير الزيت والفلتر لسيارتك."
-   },
-   "flow": "vehicle",
-   "chip_top": true
-  },
-  {
-   "id": "tires",
-   "en": {
-    "title": "Tires Sales & Seasonal Swap",
-    "desc": "Buy tires or rims, or book a seasonal swap."
-   },
-   "ar": {
-    "title": "بيع الإطارات والتبديل الموسمي",
-    "desc": "شراء إطارات أو جنوط، أو حجز تبديل موسمي."
-   },
-   "flow": "tires",
-   "chip_top": true
-  },
-  {
-   "id": "ac",
-   "en": {
-    "title": "A/C Service",
-    "desc": "Air conditioning check and service."
-   },
-   "ar": {
-    "title": "صيانة التكييف",
-    "desc": "فحص وصيانة التكييف."
-   },
-   "flow": "vehicle",
-   "chip_top": true
-  },
-  {
-   "id": "diag",
-   "en": {
-    "title": "Diagnostics & Check Engine",
-    "desc": "Check-engine light and fault diagnosis."
-   },
-   "ar": {
-    "title": "الفحص الكمبيوتري وضوء المحرك",
-    "desc": "ضوء المحرك وتشخيص الأعطال."
-   },
-   "flow": "diag",
-   "chip_top": true
-  },
-  {
-   "id": "battery",
-   "en": {
-    "title": "Battery Services",
-    "desc": "Battery testing and replacement."
-   },
-   "ar": {
-    "title": "خدمات البطاريات",
-    "desc": "فحص البطارية وتبديلها."
-   },
-   "flow": "battery",
-   "chip_top": true
-  },
-  {
-   "id": "electrical",
-   "en": {
-    "title": "Electrical",
-    "desc": "Electrical faults and repairs."
-   },
-   "ar": {
-    "title": "الكهرباء",
-    "desc": "أعطال وإصلاحات كهربائية."
-   },
-   "flow": "vehicle",
-   "chip_top": false
-  },
-  {
-   "id": "brakes",
-   "en": {
-    "title": "Brakes",
-    "desc": "Brake inspection and repair."
-   },
-   "ar": {
-    "title": "الفرامل",
-    "desc": "فحص وإصلاح الفرامل."
-   },
-   "flow": "vehicle",
-   "chip_top": true
-  },
-  {
-   "id": "detailing",
-   "en": {
-    "title": "Detailing",
-    "desc": "Interior and exterior detailing."
-   },
-   "ar": {
-    "title": "التلميع والتنظيف",
-    "desc": "تنظيف وتلميع داخلي وخارجي."
-   },
-   "flow": "vehicle",
-   "chip_top": false
-  },
-  {
-   "id": "glass",
-   "en": {
-    "title": "Glass Replacement",
-    "desc": "Windshield and glass replacement."
-   },
-   "ar": {
-    "title": "تبديل الزجاج",
-    "desc": "تبديل الزجاج الأمامي وزجاج السيارة."
-   },
-   "flow": "vehicle",
-   "chip_top": false
-  },
-  {
-   "id": "collision",
-   "en": {
-    "title": "Collision Repair",
-    "desc": "Collision and body repair."
-   },
-   "ar": {
-    "title": "إصلاح الحوادث والسمكرة",
-    "desc": "إصلاح الحوادث والسمكرة."
-   },
-   "flow": "vehicle",
-   "chip_top": true
-  },
-  {
-   "id": "prepurchase",
-   "en": {
-    "title": "Pre-Purchase Inspection",
-    "desc": "We inspect a used car before you buy it."
-   },
-   "ar": {
-    "title": "فحص قبل الشراء",
-    "desc": "نفحص السيارة المستعملة قبل أن تشتريها."
-   },
-   "flow": "prepurchase",
-   "chip_top": true
-  },
-  {
-   "id": "used",
-   "en": {
-    "title": "Used Cars & Car Valuation",
-    "desc": "Licensed dealer since 2011. Buy a used car, or get a car valued using current auction market prices."
-   },
-   "ar": {
-    "title": "سيارات مستعملة وتقييم السيارات",
-    "desc": "تاجر مرخّص منذ 2011. شراء سيارة مستعملة، أو تقييم سيارة بناءً على أسعار المزادات الحالية."
-   },
-   "flow": "used",
-   "chip_top": false
-  }
- ]
+  "reels": []
 }
