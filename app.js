@@ -53,7 +53,7 @@ function start(k){
  if(k==="tires"){bot(T.q_kind);chips(T.kinds.map(function(c){return [c[0],c[1],function(){if(c[0]==="swap"||c[0]==="changeover"){S.d.service="tire_"+c[0];S.d.part=c[1];return ask("vehicle",T.q_vehicle)}S.d.service=c[0]==="rim"?"rims":"tires";S.d.kind=c[0];ask("size",T.q_size)}]}));return}
 }
 var fab=document.getElementById('fab');
-function openFlow(k){track('chat_open',k);chat.hidden=false;fab.hidden=true;log.innerHTML='';vc.hidden=true;pg.hidden=true;var m=mem();m.visits=(m.visits||0)+1;setMem(m);bot(HELLO.welcome);if(k!=='welcome'&&HELLO[k])bot(HELLO[k]);if(P.name&&mem().keep===1)bot(T.welcome_back.replace('{n}',P.name));if(k==="services"||k==="parts"||k==="tires"||k==="book")start(k);else home()}
+function openFlow(k){track('chat_open',k);chat.hidden=false;fab.hidden=true;log.innerHTML='';vc.hidden=true;pg.hidden=true;var m=mem();m.visits=(m.visits||0)+1;setMem(m);bot(HELLO.welcome);var FL={services:1,parts:1,tires:1,book:1};if(k!=='welcome'&&!FL[k]&&HELLO[k])bot(HELLO[k]);if(P.name&&mem().keep===1)bot(T.welcome_back.replace('{n}',P.name));if(k==="services"||k==="parts"||k==="tires"||k==="book")start(k);else home()}
 function vinDecode(v){return fetch("https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/"+v+"?format=json").then(function(r){return r.json()}).then(function(j){var r=(j.Results||[])[0]||{};return r.Make?{year:r.ModelYear,make:r.Make,model:r.Model}:null}).catch(function(){return null})}
 function urgency(t){return new RegExp(T.intent_words.urgent,"i").test(t)?"high":"low"}
 function save(){
@@ -93,7 +93,7 @@ function handle(t){
  bot(T.fallback);home();link(T.call,"tel:+16474480876")
 }
 form.onsubmit=function(e){e.preventDefault();var t=inp.value.trim();if(!t)return;inp.value='';user(t);handle(t)};
-document.querySelectorAll('.go').forEach(function(b){b.onclick=function(){openFlow(b.dataset.k)}});
+document.querySelectorAll('.go').forEach(function(b){b.onclick=function(){openFlow(b.dataset.k)}});document.querySelectorAll('nav .nv').forEach(function(a){a.onclick=function(){openFlow(a.dataset.k)}});
 document.getElementById('x').onclick=function(){track('chat_close',S.flow,S.step);chat.hidden=true;fab.hidden=false};fab.onclick=function(){if(log.children.length){chat.hidden=false;fab.hidden=true;inp.focus()}else openFlow('welcome')};document.getElementById('mn').onclick=function(){chat.classList.toggle('min')};
 log.setAttribute('aria-live','polite');track('page_view');
 try{document.querySelectorAll('.lang').forEach(function(a){a.addEventListener('click',function(){localStorage.setItem('lang',a.dataset.lang)})})}catch(e){}

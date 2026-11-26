@@ -97,10 +97,10 @@ for k,c in C.items():
     cards=""
     for key,t,d,b in c["choices"]:
         img = f'<img src="../img/{IMG[key]}" alt="" loading="lazy">' if IMG[key] else '<div class="ph" style="background:linear-gradient(135deg,{CLR[key]},#0B1F3A)"><i></i></div>'
-        cards += f'<article class="card" style="--c:{CLR[key]}"><div class="im">{img}</div><div class="bd"><h3>{t}</h3><p>{d}</p><button class="go" data-k="{key}">{b}</button></div></article>'
+        cards += f'<article class="card" id="{key}" style="--c:{CLR[key]}"><div class="im">{img}</div><div class="bd"><h3>{t}</h3><p>{d}</p><button class="go" data-k="{key}">{b}</button></div></article>'
     k=[x for x in C if C[x] is c][0]
     faqhtml=''.join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q,a in FAQ[k]['q'])
-    nav = "".join(f'<a href="#{a}">{n}</a>' for a,n in zip(["services","parts","tires","book"],c["nav"]))
+    nav = "".join(f'<a href="#{a}" class="nv" data-k="{a}">{n}</a>' for a,n in zip(["services","parts","tires","book"],c["nav"]))
     html = f'''<!doctype html><html lang="{c["lang"]}" dir="{c["dir"]}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{c["title"]}</title><meta name="description" content="{c["desc"]}">
 <link rel="alternate" hreflang="en" href="https://mmautocenter.ca/en/"><link rel="alternate" hreflang="ar" href="https://mmautocenter.ca/ar/"><link rel="alternate" hreflang="x-default" href="https://mmautocenter.ca/en/">
