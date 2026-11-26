@@ -38,8 +38,9 @@ function ask(step,q){var d=S.d;
  if(step==="vehicle"&&P.veh&&!d.veh&&!S.vehAsked){S.vehAsked=1;var vt=[P.veh.year,P.veh.make,P.veh.model].filter(Boolean).join(" ");bot(T.same_veh.replace("{v}",vt));return chips([["yes",T.yes,function(){d.veh=P.veh;d.vin=P.vin||null;d.vehText=P.vehText||vt;pin();afterVeh()}],["other",T.other,function(){ask("vehicle",q)}]])}
  S.step=step;track('step',S.flow||S.d.service,step);prog(step);pin();bot(q);inp.focus()}
 function afterVeh(){var d=S.d;if(d.service==="diagnosis")return ask("mileage",T.q_mileage);if(d.service==="pre_purchase_inspection")return ask("mileage",T.q_mileage_buy);if(d.service==="car_valuation_sell")return ask("mileage",T.q_mileage);if(d.service==="car_valuation_buy")return ask("mileage",T.q_mileage_buy);ask("name",T.q_name)}
+function cool(t){if(!S.cool&&/radiat|a\/c|\bac\b|air ?con|compressor|condenser|coolant|رادياتير|ردياتير|راديتر|تكييف|مكيف|التكييف|كمبريسور|كمبروسر/i.test(t||"")){S.cool=1;track("lifetime_note",S.flow);bot(T.lifetime)}}
 function start(k){
- S={step:"idle",flow:k,d:{}};track('flow_start',k);
+ S={step:"idle",flow:k,d:{}};track('flow_start',k);if(k==="ac")cool("ac");
  if(k==="hours"){bot(T.hours);bot(openNow()?T.open_now:T.closed_now);return home()}
  if(k==="loc"){bot(T.loc);link(T.map,MAP);link(T.dir,DIR);return home()}
  if(k==="book"){bot(T.book_msg);link(T.book_btn,ARI);chips([["cb",T.callback,function(){track('callback_click','book');S.flow="callback";S.d.service="appointment";ask("vehicle",T.q_vehicle)}],["call",T.call,function(){track('call_click',S.flow);location.href="tel:+16474480876"}]]);return}
@@ -74,9 +75,9 @@ function after(){S.step="idle";prog("idle");link(T.book_btn,ARI);var m=mem();
 function handle(t){
  var d=S.d;
  if(S.step==="size"){d.part=(d.kind==="rim"?"Rims: ":d.kind==="both"?"Tires+rims: ":"Tires: ")+t;if(d.kind==="rim"){return ask("vehicle",T.q_vehicle)}bot(T.q_season);return chips(T.seasons.map(function(c){return [c[0],c[1],function(){d.part+=" | "+c[1];ask("vehicle",T.q_vehicle)}]}))}
- if(S.step==="part"){d.part=t;return ask("vehicle",T.q_vehicle)}
+ if(S.step==="part"){d.part=t;cool(t);return ask("vehicle",T.q_vehicle)}
  if(S.step==="want"){d.want=t.slice(0,300);return ask("name",T.q_name)}
- if(S.step==="symptom"){d.symptom=t.slice(0,500);return ask("vehicle",T.q_vehicle)}
+ if(S.step==="symptom"){d.symptom=t.slice(0,500);cool(t);return ask("vehicle",T.q_vehicle)}
  if(S.step==="vehicle"){d.vehText=t;var vin=t.replace(/\s/g,"").toUpperCase();
   if(/^[A-HJ-NPR-Z0-9]{17}$/.test(vin)){d.vin=vin;return vinDecode(vin).then(function(r){if(r&&r.year&&r.make&&r.model){track('vin_ok',S.flow);d.veh=r;bot(T.vin_ok+" "+[r.year,r.make,r.model].join(" "));afterVeh()}else{track('vin_fail',S.flow);bot(T.vin_fail);ask("vehicle2",T.q_vehicle2)}})}
   var p=t.match(/^(\d{4})\s+(\S+)\s*(.*)$/);if(p)d.veh={year:p[1],make:p[2],model:p[3]};return afterVeh()}
