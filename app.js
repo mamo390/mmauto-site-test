@@ -52,7 +52,7 @@ function start(k){
  if(k==="tires"){bot(T.q_kind);chips(T.kinds.map(function(c){return [c[0],c[1],function(){if(c[0]==="swap"||c[0]==="changeover"){S.d.service="tire_"+c[0];S.d.part=c[1];return ask("vehicle",T.q_vehicle)}S.d.service=c[0]==="rim"?"rims":"tires";S.d.kind=c[0];ask("size",T.q_size)}]}));return}
 }
 var fab=document.getElementById('fab');
-function openFlow(k){track('chat_open',k);chat.hidden=false;fab.hidden=true;log.innerHTML='';vc.hidden=true;pg.hidden=true;var m=mem();m.visits=(m.visits||0)+1;setMem(m);bot(HELLO[k]||HELLO.book);if(P.name&&mem().keep===1)bot(T.welcome_back.replace('{n}',P.name));if(k==="services"||k==="parts"||k==="tires"||k==="book")start(k);else home()}
+function openFlow(k){track('chat_open',k);chat.hidden=false;fab.hidden=true;log.innerHTML='';vc.hidden=true;pg.hidden=true;var m=mem();m.visits=(m.visits||0)+1;setMem(m);bot(HELLO.welcome);if(k!=='welcome'&&HELLO[k])bot(HELLO[k]);if(P.name&&mem().keep===1)bot(T.welcome_back.replace('{n}',P.name));if(k==="services"||k==="parts"||k==="tires"||k==="book")start(k);else home()}
 function vinDecode(v){return fetch("https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/"+v+"?format=json").then(function(r){return r.json()}).then(function(j){var r=(j.Results||[])[0]||{};return r.Make?{year:r.ModelYear,make:r.Make,model:r.Model}:null}).catch(function(){return null})}
 function urgency(t){return new RegExp(T.intent_words.urgent,"i").test(t)?"high":"low"}
 function save(){
