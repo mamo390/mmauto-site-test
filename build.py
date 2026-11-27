@@ -34,7 +34,7 @@ C = {
  note="نؤكد لك السعر والتوفر. الأسعار ليست نهائية حتى نؤكدها.",
  addr="1765 Shawson Dr, Unit 14, Mississauga", foot="إصلاح سيارات وقطع غيار", priv="نقيس استخدام الموقع دون حفظ بياناتك الشخصية.", ph="اسأل عن القطع والخدمات والحجز...", send="إرسال", close="إغلاق"),
 }
-IMG = {"services":"services.png","parts":"parts.png","tires":None,"book":None}
+IMG = {"services":"services.png","parts":"parts.png","tires":"tires.jpg","book":"book.jpg"}
 CLR = {"services":"#1E5FA8","parts":"#D9480F","tires":"#0F8B6D","book":"#6741D9"}
 TT={"en":{
 "svc":[["repair","Auto repair"],["battery","Battery"],["prepurchase","Pre-purchase inspection"],["diag","Not sure what's wrong"],["ac","A/C service"],["other","Something else"]],
