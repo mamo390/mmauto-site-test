@@ -118,3 +118,23 @@ body.th-blue{--ac:#2563EB;--ac2:#60A5FA;--acT:#fff;--acS:#2563EB26}
 .about details{background:#F8FAFD;border-radius:10px;padding:10px 14px}.about summary{cursor:pointer;font-weight:700}.about ul{margin:8px 0 0;padding-inline-start:18px;line-height:1.7;font-size:14px}
 @media(max-width:700px){.about{grid-template-columns:1fr}.lt{display:none}}
 .logo .lt{color:#fff;font-weight:700;font-size:20px}.logo .lt span{color:var(--orange)}
+
+/* how it works infographic */
+.how{list-style:none;padding:0;margin:0 0 26px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;counter-reset:s}
+.how li{background:#0B1F3A;color:#fff;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:6px;position:relative}
+.how .hi{width:44px;height:44px;border-radius:50%;background:#E8692A;display:flex;align-items:center;justify-content:center}.how .hi svg{width:24px;height:24px;color:#fff}
+.how b{font-size:17px}.how em{font-style:normal;color:#E8692A;margin-inline-end:4px}.how span{font-size:14px;opacity:.85;line-height:1.5}
+/* faq cards */
+.fqg{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.faq .fqg details{margin:0;background:#fff;border:1px solid #E3E8F0;border-radius:12px;padding:12px 14px;box-shadow:0 1px 4px #0b1f3a10}
+.faq .fqg summary{list-style:none;display:flex;align-items:center;gap:10px}.faq .fqg summary::-webkit-details-marker{display:none}
+.faq .fqg summary::after{content:"+";margin-inline-start:auto;font-size:20px;color:#2B7CB8;font-weight:700}.faq .fqg details[open] summary::after{content:"–"}
+.ic{flex:none;width:36px;height:36px;border-radius:10px;background:#EAF2FA;display:flex;align-items:center;justify-content:center}.ic svg{width:20px;height:20px;color:#2B7CB8}
+/* full experience cards */
+.xpd summary{font-size:16px}.xg{font-size:15px;color:#E8692A;margin:14px 0 8px}
+.xp{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.xc{display:flex;gap:10px;background:#fff;border:1px solid #E3E8F0;border-radius:12px;padding:10px}
+.xi{flex:none;width:34px;height:34px;border-radius:50%;background:#0B1F3A;display:flex;align-items:center;justify-content:center}.xi svg{width:18px;height:18px;color:#fff}
+.xc b{display:block;font-size:14px;line-height:1.35}.xc small{display:block;font-size:13px;opacity:.8;line-height:1.45;margin-top:3px}
+.br{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}.br i{font-style:normal;font-size:12px;font-weight:700;background:#FDEBDD;color:#B4470F;border-radius:20px;padding:2px 8px}
+@media(max-width:700px){.how,.fqg,.xp{grid-template-columns:1fr}}
