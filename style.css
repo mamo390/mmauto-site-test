@@ -167,3 +167,4 @@ body.th-blue{--ac:#2563EB;--ac2:#60A5FA;--acT:#fff;--acS:#2563EB26}
 @media(max-width:900px){.mg{grid-template-columns:1fr 1fr}.vinbox{grid-template-columns:1fr}}
 @media(max-width:520px){.mg{grid-template-columns:1fr}}
 .hero video.hero-img{display:block;aspect-ratio:16/9;object-fit:cover;background:#0B1F3A}
+.mbs{display:flex;flex-wrap:wrap;gap:6px}.mb.wa{background:#25D366;color:#fff}
