@@ -55,7 +55,8 @@ function start(k){
  if(k==="tires"){bot(T.q_kind);chips(T.kinds.map(function(c){return [c[0],c[1],function(){if(c[0]==="swap"||c[0]==="changeover"){S.d.service="tire_"+c[0];S.d.part=c[1];return ask("vehicle",T.q_vehicle)}S.d.service=c[0]==="rim"?"rims":"tires";S.d.kind=c[0];track("fast_tires_note",S.flow);bot(T.fast_tires);ask("size",T.q_size)}]}));return}
 }
 var fab=document.getElementById('fab');
-function openFlow(k){track('chat_open',k);chat.hidden=false;fab.hidden=true;log.innerHTML='';vc.hidden=true;pg.hidden=true;var m=mem();m.visits=(m.visits||0)+1;setMem(m);bot(HELLO.welcome);var FL={services:1,parts:1,tires:1,book:1};if(k!=='welcome'&&!FL[k]&&HELLO[k])bot(HELLO[k]);if(P.name&&mem().keep===1)bot(T.welcome_back.replace('{n}',P.name));if(k==="services"||k==="parts"||k==="tires"||k==="book")start(k);else home()}
+function okPhone(t){var d=String(t).replace(/\D/g,"");if(d.length===11&&d[0]==="1")d=d.slice(1);if(d.length!==10)return false;if(/[01]/.test(d[0])||/[01]/.test(d[3]))return false;if(/^(\d)\1{9}$/.test(d))return false;if(["1234567890","9876543210"].indexOf(d)>=0)return false;if(d.slice(3,6)==="555"&&d.slice(6,8)==="01")return false;return true}
+function openFlow(k){S.t0=S.t0||Date.now();track('chat_open',k);chat.hidden=false;fab.hidden=true;log.innerHTML='';vc.hidden=true;pg.hidden=true;var m=mem();m.visits=(m.visits||0)+1;setMem(m);bot(HELLO.welcome);var FL={services:1,parts:1,tires:1,book:1};if(k!=='welcome'&&!FL[k]&&HELLO[k])bot(HELLO[k]);if(P.name&&mem().keep===1)bot(T.welcome_back.replace('{n}',P.name));if(k==="services"||k==="parts"||k==="tires"||k==="book")start(k);else home()}
 function vinDecode(v){return fetch("https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/"+v+"?format=json").then(function(r){return r.json()}).then(function(j){var r=(j.Results||[])[0]||{};return r.Make?{year:r.ModelYear,make:r.Make,model:r.Model}:null}).catch(function(){return null})}
 (function(){var f=document.getElementById('vinf');if(!f)return;var i=document.getElementById('vini'),o=document.getElementById('vino'),c=document.getElementById('vinc');
 f.onsubmit=function(e){e.preventDefault();var v=(i.value||'').replace(/\s/g,'').toUpperCase();c.hidden=true;if(!/^[A-HJ-NPR-Z0-9]{17}$/.test(v)){o.textContent=f.dataset.bad;return}
@@ -69,9 +70,9 @@ function save(){
   urgency_level:urgency((d.part||"")+" "+(d.symptom||"")+" "+(d.vehText||"")),segment:(m.visits||1)>=5?"loyal":(m.visits||1)>=2?"returning":"new",session_id:sid,status:"new",
   source:/^(parts|tires|rims)$/.test(d.service)?"chatbot_parts":"chatbot_booking",notes:"lang="+LANG+(LIVE?"":" test")};
  if(!PROD){bot(T.done);if(!openNow())bot(T.closed_note);bot(T.test);after();return}
- row.notes+=" src="+SRC;var url=INTAKE||(SB+"/rest/v1/leads");if(INTAKE){delete row.status}
+ var REF=sid.replace(/-/g,"").slice(0,6).toUpperCase(),hp=document.getElementById("hp");row.notes+=" src="+SRC+" ref="+REF+((hp&&hp.value)?" hp=1":"")+((!P.name&&S.t0&&Date.now()-S.t0<8000)?" fast=1":"");S.ref=REF;var url=INTAKE||(SB+"/rest/v1/leads");if(INTAKE){delete row.status}
  fetch(url,{method:"POST",headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+KEY,Prefer:"return=minimal"},body:JSON.stringify(row)})
- .then(function(r){if(!r.ok)throw 0;return INTAKE?r.json():{status:"created"}}).then(function(x){track('lead_saved',S.flow,null,d.service);if(x.status==="updated")bot(T.done_more);else bot(T.done);if(!openNow())bot(T.closed_note);after()}).catch(function(){track('lead_error',S.flow);bot(T.fail);link(T.call,"tel:+16474480876")})
+ .then(function(r){if(!r.ok)throw 0;return INTAKE?r.json():{status:"created"}}).then(function(x){track('lead_saved',S.flow,null,d.service);if(x.status==="updated")bot(T.done_more);else bot(T.done);if(!openNow())bot(T.closed_note);try{var vv=d.veh?[d.veh.year,d.veh.make,d.veh.model].filter(Boolean).join(" "):(d.vehText||"");bot(T.wa_note);link(T.wa_btn,"https://wa.me/16474480876?text="+encodeURIComponent(T.wa_msg.replace("{r}",S.ref||"").replace("{n}",d.name||"").replace("{v}",vv)))}catch(e){}after()}).catch(function(){track('lead_error',S.flow);bot(T.fail);link(T.call,"tel:+16474480876")})
 }
 function persistP(){var m=mem();m.keep=1;m.p=P;setMem(m)}
 function after(){S.step="idle";prog("idle");link(T.book_btn,ARI);var m=mem();
@@ -91,7 +92,7 @@ function handle(t){
  if(S.step==="mileage"){d.mileage=t.replace(/[^\w\s.,]/g,"").slice(0,20);if(d.service==="diagnosis"){ask("dtc",T.q_dtc);return chips([["skip",T.skip,function(){ask("name",T.q_name)}]])}return ask("name",T.q_name)}
  if(S.step==="dtc"){var cs=(t.toUpperCase().match(/[PBCU][0-3][0-9A-F]{3}/g)||[]).slice(0,5);d.dtc=cs.join(", ")||t.slice(0,40);return ask("name",T.q_name)}
  if(S.step==="name"){d.name=t.slice(0,80);return ask("phone",T.q_phone)}
- if(S.step==="phone"){if(t.replace(/\D/g,"").length<10){bot(T.bad_phone);return}d.phone=t.slice(0,30);S.step="saving";return save()}
+ if(S.step==="phone"){if(!okPhone(t)){bot(T.bad_phone);return}d.phone=t.slice(0,30);S.step="saving";return save()}
  var w=T.intent_words,x=t;
  function m(k){return new RegExp(w[k],"i").test(x)}
  if(m("hours"))return start("hours");if(m("loc"))return start("loc");if(m("book"))return start("book");if(m("insp"))return start("prepurchase");if(m("battery"))return start("battery");if(m("parts"))return start("parts");
