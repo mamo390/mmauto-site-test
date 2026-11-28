@@ -246,6 +246,10 @@ function start(k){
 var fab=document.getElementById('fab');
 function openFlow(k){track('chat_open',k);chat.hidden=false;fab.hidden=true;log.innerHTML='';vc.hidden=true;pg.hidden=true;var m=mem();m.visits=(m.visits||0)+1;setMem(m);bot(HELLO.welcome);var FL={services:1,parts:1,tires:1,book:1};if(k!=='welcome'&&!FL[k]&&HELLO[k])bot(HELLO[k]);if(P.name&&mem().keep===1)bot(T.welcome_back.replace('{n}',P.name));if(k==="services"||k==="parts"||k==="tires"||k==="book")start(k);else home()}
 function vinDecode(v){return fetch("https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/"+v+"?format=json").then(function(r){return r.json()}).then(function(j){var r=(j.Results||[])[0]||{};return r.Make?{year:r.ModelYear,make:r.Make,model:r.Model}:null}).catch(function(){return null})}
+(function(){var f=document.getElementById('vinf');if(!f)return;var i=document.getElementById('vini'),o=document.getElementById('vino'),c=document.getElementById('vinc');
+f.onsubmit=function(e){e.preventDefault();var v=(i.value||'').replace(/\s/g,'').toUpperCase();c.hidden=true;if(!/^[A-HJ-NPR-Z0-9]{17}$/.test(v)){o.textContent=f.dataset.bad;return}
+o.textContent='…';track('vin_box',v.slice(0,3));vinDecode(v).then(function(r){if(r&&r.year&&r.make){P.veh=r;P.vin=v;P.vehText=[r.year,r.make,r.model].filter(Boolean).join(' ');o.textContent=f.dataset.ok+' '+P.vehText+' ✓ — '+f.dataset.next;c.hidden=false}else{o.textContent=f.dataset.fail}})}})();
+
 function urgency(t){return new RegExp(T.intent_words.urgent,"i").test(t)?"high":"low"}
 function save(){
  var d=S.d,m=mem(),v=d.veh||{};if(d.phone&&d.vin&&d.vin.length===17&&!S.greeted){fetch(SB+"/rest/v1/rpc/check_returning",{method:"POST",headers:{"Content-Type":"application/json",apikey:KEY,Authorization:"Bearer "+KEY},body:JSON.stringify({p_phone:d.phone,p_vin:d.vin})}).then(function(r){return r.ok?r.json():null}).then(function(x){if(x&&x.known&&x.first_name){S.greeted=1;track('returning_customer',S.flow);bot(T.welcome_back.replace("{n}",x.first_name)+" \ud83d\udc4b")}}).catch(function(){})}P={name:d.name,phone:d.phone,veh:d.veh||P.veh,vin:d.vin||P.vin,vehText:d.vehText||P.vehText};
@@ -291,7 +295,4 @@ try{document.querySelectorAll('.lang').forEach(function(a){a.addEventListener('c
 (function(){try{var c=document.getElementById('chat');new MutationObserver(function(){document.body.classList.toggle('chat-open',!c.hidden)}).observe(c,{attributes:true,attributeFilter:['hidden']});var s=c.querySelector('.ch small');if(s&&!openNow()){s.className='off';s.lastChild.textContent=LANG==='ar'?'خارج ساعات العمل - اترك رسالتك':'Away - leave a message'}if(/[?&]theme=blue/.test(location.search))document.body.classList.add('th-blue')}catch(e){}})();
 })();
 ;(function(){var t=document.querySelector('.tl');if(!t)return;if(!('IntersectionObserver' in window)){t.classList.add('on');return}var o=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){t.classList.add('on');o.disconnect()}})},{threshold:.35});o.observe(t)})();
-;(function(){var f=document.getElementById('vinf');if(!f)return;var i=document.getElementById('vini'),o=document.getElementById('vino'),c=document.getElementById('vinc');
-f.onsubmit=function(e){e.preventDefault();var v=(i.value||'').replace(/\s/g,'').toUpperCase();c.hidden=true;if(!/^[A-HJ-NPR-Z0-9]{17}$/.test(v)){o.textContent=f.dataset.bad;return}
-o.textContent='…';track('vin_box',v.slice(0,3));vinDecode(v).then(function(r){if(r&&r.year&&r.make){P.veh=r;P.vin=v;P.vehText=[r.year,r.make,r.model].filter(Boolean).join(' ');o.textContent=f.dataset.ok+' '+P.vehText+' ✓ — '+f.dataset.next;c.hidden=false}else{o.textContent=f.dataset.fail}})}})();
 </script></body></html>
