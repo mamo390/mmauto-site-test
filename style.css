@@ -168,3 +168,8 @@ body.th-blue{--ac:#2563EB;--ac2:#60A5FA;--acT:#fff;--acS:#2563EB26}
 @media(max-width:520px){.mg{grid-template-columns:1fr}}
 .hero video.hero-img{display:block;aspect-ratio:16/9;object-fit:cover;background:#0B1F3A}
 .mbs{display:flex;flex-wrap:wrap;gap:6px}.mb.wa{background:#25D366;color:#fff}
+/* mobile service areas */
+.areas{max-width:1000px;margin:20px auto;background:linear-gradient(135deg,#0B1F3A,#163a66);color:#fff;border-radius:16px;padding:18px}
+.areas h2{margin:0 0 6px}.areas p{margin:0 0 12px;opacity:.85;font-size:14px}
+.ag{display:flex;flex-wrap:wrap;gap:8px}.ag a{background:#ffffff14;border:1px solid #ffffff30;color:#fff;text-decoration:none;border-radius:20px;padding:7px 14px;font-size:14px;font-weight:600}
+.ag a::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:#25D366;margin-inline-end:7px}.ag a:hover{background:#25D366;border-color:#25D366}
